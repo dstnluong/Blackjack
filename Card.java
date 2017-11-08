@@ -7,7 +7,7 @@ public class Card {
 	public String getName() {
 		return name;
 	}
-	public int getCard() {
+	public int getValue() {
 		return value;
 	}
 }
