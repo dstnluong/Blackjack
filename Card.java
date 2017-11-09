@@ -3,15 +3,15 @@ public class Card {
 	int value;
 	public Card(String cardRank, String cardSuit, int cardValue) {
 		rank =  cardRank;
-        suit = cardSuit;
+		suit = cardSuit;
 		value = cardValue;
 	}
 	public String getRank() {
 		return rank;
 	}
-    public String getSuit(){
-        return suit;
-    }
+	public String getSuit(){
+		return suit;
+	}
 	public int getValue() {
 		return value;
 	}
