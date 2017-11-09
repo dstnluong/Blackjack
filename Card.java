@@ -1,12 +1,13 @@
 public class Card {
-	String name; String suit; int value;
-	public Card(String cardName, String cardSuit, int cardValue) {
-		name =  cardName;
+	String rank, suit; 
+	int value;
+	public Card(String cardRank, String cardSuit, int cardValue) {
+		rank =  cardRank;
         suit = cardSuit;
 		value = cardValue;
 	}
-	public String getName() {
-		return name;
+	public String getRank() {
+		return rank;
 	}
     public String getSuit(){
         return suit;
