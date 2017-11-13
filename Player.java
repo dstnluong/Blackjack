@@ -1,13 +1,16 @@
 import java.util.*;
 
 public class Player {
-    ArrayList <Card> hand;
+    ArrayList<Card> hand;
     int points;
     public Player() {
         hand = new ArrayList<Card>();
-        points = ;
+        points = 0;
     }
-    public getPoints(){
-        return
+    public int getPoints() {
+        return points;
+    }
+    public void hit() {
+    	deck.getCard();
     }
 }
