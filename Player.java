@@ -10,7 +10,7 @@ public class Player {
     public int getPoints() {
         return points;
     }
-    public void hit() {
-    	hand.add(deck.getCard(index));
+    public void hit(Card c) {
+    	hand.add(c);
     }
 }
