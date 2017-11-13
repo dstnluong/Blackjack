@@ -11,6 +11,6 @@ public class Player {
         return points;
     }
     public void hit() {
-    	deck.getCard();
+    	hand.add(deck.getCard(index));
     }
 }
