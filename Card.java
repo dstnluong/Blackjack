@@ -1,10 +1,10 @@
 public class Card {
 	String rank, suit; 
 	int value;
-	public Card(String cardRank, String cardSuit, int cardValue) {
+	public Card(String cardRank, String cardSuit) {
 		rank =  cardRank;
 		suit = cardSuit;
-		value = cardValue;
+		value = 0;
 	}
 	public String getRank() {
 		return rank;
