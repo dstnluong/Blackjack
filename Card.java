@@ -1,5 +1,3 @@
-import java.lang.Object;
-
 public class Card {
 	String rank, suit; 
 	int value;
