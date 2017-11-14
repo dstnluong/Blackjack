@@ -16,13 +16,14 @@ public class Deck {
         		deck.add(c);
         	}
         }
-
     }
-
     public void shuffle() {
     	Collections.shuffle(deck);
     }
-    public String getRank(int index) {
+    public Class<Card> getCard() {
+        return Card.class;
+    }
+    /*public String getRank(int index) {
     	return deck.get(index).getRank();
     }
     public String getSuit(int index) {
@@ -30,6 +31,6 @@ public class Deck {
     }
     public int getValue(int index) {
     	return deck.get(index).getValue();
-    }
+    }*/
 
 }
