@@ -15,7 +15,7 @@ public class Card {
 		return suit;
 	}
 	public int getValue() {
-		if(rank.matches(".*[A-Z].*")) {
+		if(rank.matches(".*[B-Z].*")) {
 			value = 10;
 		} else if(rank.equals("A")) {
 			value = 11;
