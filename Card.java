@@ -13,8 +13,7 @@ public class Card {
 		return suit;
 	}
 	public int getValue() {
-		//if String rank has a number at index one, continue, else move on (d stands for any #)
-		if(rank.matches("\\d")) {
+		if(rank.matches("\\d")) { //checks if the rank is a digit
 			value = Integer.parseInt(rank);
 		} else if(rank.equals("A")) {
 			value = 11;
