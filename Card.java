@@ -15,12 +15,12 @@ public class Card {
 		return suit;
 	}
 	public int getValue() {
-		if(rank.matches(".*[B-Z].*")) {
-			value = 10;
+		if(rank.matches("\\d")) {
+			value = Integer.parseInt(rank);
 		} else if(rank.equals("A")) {
 			value = 11;
 		} else {
-			value = Integer.parseInt(rank);
+			value = 10;
 		}
 		return value;
 	}
