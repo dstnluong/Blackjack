@@ -3,8 +3,8 @@ public class test {
         Deck vegas = new Deck();
         vegas.fillDeck();
         vegas.shuffle();
-        for(int i = 0; i < vegas.size(); i++){
-            System.out.print(vegas.getRank());
+        for(int i = 0; i < 52; i++){
+            System.out.println(i + " "+ vegas.getRank(i) + vegas.getSuit(i));
         }
     }
 }
