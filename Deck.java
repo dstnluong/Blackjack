@@ -22,6 +22,10 @@ public class Deck {
     public void shuffle() {
     	Collections.shuffle(deck);
     }
+    public Card getCard(int index){
+        return deck.get(index);
+    }
+    /*
     public String getRank(int index) {
     	return deck.get(index).getRank();
     }
@@ -31,5 +35,5 @@ public class Deck {
     public int getValue(int index) {
     	return deck.get(index).getValue();
     }
-
+    */
 }

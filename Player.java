@@ -3,8 +3,10 @@ import java.util.*;
 public class Player {
     ArrayList<Card> hand;
     int points, balance, bet;
-    public Player() {
+    String username;
+    public Player(String PlayerName) {
         hand = new ArrayList<Card>();
+        username = PlayerName;
         points = 0;
         bet = 0;
         balance = 1000;
@@ -21,5 +23,8 @@ public class Player {
    		} else {
    			bet = amount;
     	}
+    }
+    public Card getCard(int index){
+        return hand.get(index);
     }
 }
