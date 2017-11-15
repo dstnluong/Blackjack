@@ -5,6 +5,7 @@ public class test {
         Scanner in = new Scanner(System.in);
         Game blackjack = new Game();
         Deck vegas = new Deck();
+        Dealer larry = new Dealer();
         vegas.shuffle();
 
         //determines # of players and adds them to arraylist of players
@@ -16,15 +17,23 @@ public class test {
             blackjack.addPlayer(p);
         }
         System.out.println();
+        larry.hit(vegas.getCard(51)); 
+        larry.hit(vegas.getCard(50));
+
+        System.out.println(larry.getUsername());
+        larry.displayHand(false);
+        System.out.println(larry.getUsername());
+        larry.displayHand(true);
+
 
         //tentative code; just gives each player two random cards from the beginning of the deck
-        for(int i = 0; i < numPlayers; i++){
+                for(int i = 0; i < numPlayers; i++){
             blackjack.getPlayer(i).hit(vegas.getCard(2*i));
             blackjack.getPlayer(i).hit(vegas.getCard(2*i + 1));
             System.out.println("Player: " + blackjack.getPlayer(i).getUsername());
             blackjack.getPlayer(i).displayHand();
         }
-
+        /*
         //dealer + player code
         Dealer dustin = new Dealer();
         Player andrew = new Player("Andrew");
@@ -36,5 +45,6 @@ public class test {
         dustin.displayHand(true);
         System.out.println("Player: " + andrew.getUsername());
         andrew.displayHand();
+        */
     }
 }
