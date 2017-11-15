@@ -11,6 +11,9 @@ public class Player {
         bet = 0;
         balance = 1000;
     }
+    public String getUsername(){
+        return username;
+    }
     public int getPoints() {
         return points;
     }
@@ -26,5 +29,28 @@ public class Player {
     }
     public Card getCard(int index){
         return hand.get(index);
+    }
+    public void displayHand(){
+        String border = "+-----+  ";
+        for(int j = 0; j < hand.size(); j++){
+             System.out.print(border);
+        }
+        System.out.println("");
+        for(int j = 0; j < hand.size(); j++){
+            System.out.print("|" + hand.get(j).getRank()+ "    |  ");
+        }
+        System.out.println("");
+        for(int j = 0; j < hand.size(); j++){
+            System.out.print("|  " +  hand.get(j).getSuit() + "  |  ");
+        }
+        System.out.println("");
+        for(int j = 0; j < hand.size(); j++){
+            System.out.print("|    " + hand.get(j).getRank() + "|  ");
+        }
+        System.out.println("");
+        for(int j = 0; j < hand.size(); j++){
+            System.out.print(border);
+        }
+        System.out.println("");
     }
 }
