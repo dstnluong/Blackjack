@@ -7,6 +7,7 @@ public class test {
         Deck vegas = new Deck();
         vegas.shuffle();
 
+        //determines # of players and adds them to arraylist of players
         System.out.print("How many players? ");
         int numPlayers = in.nextInt();
         for(int i = 1; i <= numPlayers; i++) {
@@ -16,6 +17,7 @@ public class test {
         }
         System.out.println();
 
+        //tentative code; just gives each player two random cards from the beginning of the deck
         for(int i = 0; i < numPlayers; i++){
             blackjack.getPlayer(i).hit(vegas.getCard(2*i));
             blackjack.getPlayer(i).hit(vegas.getCard(2*i + 1));
@@ -23,6 +25,7 @@ public class test {
             blackjack.getPlayer(i).displayHand();
         }
 
+        //dealer + player code
         Dealer dustin = new Dealer();
         Player andrew = new Player("Andrew");
         for(int i = 0; i < 3; i++){

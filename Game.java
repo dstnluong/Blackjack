@@ -5,6 +5,7 @@ public class Game {
 	public Game() {
 		players = new ArrayList<Player>();
 	}
+	//get player at specific index
 	public Player getPlayer(int index) {
 		return players.get(index);
 	}
@@ -14,6 +15,7 @@ public class Game {
 	public void removePlayer(Player oldPlayer) {
 		players.remove(oldPlayer);
 	}
+	//following method isn't really necessary, just needed to test if adding players worked
 	public void printPlayers() {
 		for(int i = 0; i < players.size(); i++) {
 			Player p = players.get(i);
