@@ -30,14 +30,18 @@ public class Player {
     public Card getCard(int index){
         return hand.get(index);
     }
-    public void displayHand(){
+    public void displayHand(){ //print the player's hand as ascii art xd
         String border = "+-----+  ";
         for(int j = 0; j < hand.size(); j++){
              System.out.print(border);
         }
         System.out.println("");
         for(int j = 0; j < hand.size(); j++){
-            System.out.print("|" + hand.get(j).getRank()+ "    |  ");
+            String padding = " ";
+            if(hand.get(j).getRank().length() == 2){ //account for "10" having two digits
+                padding = "";
+            }
+            System.out.print("|" + hand.get(j).getRank()+ padding + "   |  ");
         }
         System.out.println("");
         for(int j = 0; j < hand.size(); j++){
@@ -45,7 +49,11 @@ public class Player {
         }
         System.out.println("");
         for(int j = 0; j < hand.size(); j++){
-            System.out.print("|    " + hand.get(j).getRank() + "|  ");
+            String padding = " ";
+            if(hand.get(j).getRank().length() == 2){ //account for "10" having two digits
+                padding = "";
+            }
+            System.out.print("|   " + padding + hand.get(j).getRank() + "|  ");
         }
         System.out.println("");
         for(int j = 0; j < hand.size(); j++){
