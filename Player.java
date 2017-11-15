@@ -4,9 +4,9 @@ public class Player {
     ArrayList<Card> hand;
     int points, balance, bet;
     String username;
-    public Player(String PlayerName) {
+    public Player(String playerName) {
         hand = new ArrayList<Card>();
-        username = PlayerName;
+        username = playerName;
         points = 0;
         bet = 0;
         balance = 1000;

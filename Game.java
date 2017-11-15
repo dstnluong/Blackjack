@@ -1,11 +1,23 @@
 import java.util.*;
 
 public class Game {
-	public static void main(String[] args) {
-		int index = 0;
-        Deck vegas = new Deck();
-       	ArrayList<Player> players = new ArrayList<Player>(); 
-        Scanner in = new Scanner(System.in);
-       	System.out.print("How many players? ");
-   	}
+	ArrayList<Player> players;
+	public Game() {
+		players = new ArrayList<Player>();
+	}
+	public Player getPlayer(int index) {
+		return players.get(index);
+	}
+	public void addPlayer(Player newPlayer) {
+		players.add(newPlayer);
+	}
+	public void removePlayer(Player oldPlayer) {
+		players.remove(oldPlayer);
+	}
+	public void printPlayers() {
+		for(int i = 0; i < players.size(); i++) {
+			Player p = players.get(i);
+			System.out.print(p.getUsername() + "  ");
+		}
+	}
 }
