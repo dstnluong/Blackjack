@@ -19,8 +19,8 @@ public class test {
         System.out.println();
 
         //dealer hits
-        larry.hit(vegas.getCard(51)); 
-        larry.hit(vegas.getCard(50));
+        larry.hit(vegas.getCard()); 
+        larry.hit(vegas.getCard());
         //print dealer hand
         System.out.println(larry.getUsername());
         larry.displayHand(false);
@@ -29,8 +29,8 @@ public class test {
 
         //tentative code; just gives each player two random cards from the beginning of the deck
         for(int i = 0; i < numPlayers; i++) {
-            blackjack.getPlayer(i).hit(vegas.getCard(2*i));
-            blackjack.getPlayer(i).hit(vegas.getCard(2*i + 1));
+            blackjack.getPlayer(i).hit(vegas.getCard());
+            blackjack.getPlayer(i).hit(vegas.getCard());
             System.out.println("Player: " + blackjack.getPlayer(i).getUsername());
             blackjack.getPlayer(i).displayHand();
         }

@@ -3,8 +3,10 @@ import java.util.*;
 public class Deck {
     ArrayList<Card> deck;
     String[] rank, suit;
+    int drawCounter;
     public Deck() {
         deck = new ArrayList<Card>();
+        drawCounter = -1;
         fillDeck();
         shuffle();
     }
@@ -21,8 +23,12 @@ public class Deck {
     public void shuffle() {
     	Collections.shuffle(deck);
     }
-    public Card getCard(int index){
-        return deck.get(index);
+    public void increaseDrawCounter(){
+        drawCounter++;
+    }
+    public Card getCard(){
+        increaseDrawCounter();
+        return deck.get(drawCounter);
     }
     /*
     public String getRank(int index) {
