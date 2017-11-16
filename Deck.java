@@ -23,11 +23,11 @@ public class Deck {
     public void shuffle() {
     	Collections.shuffle(deck);
     }
-    public void increaseDrawCounter(){
+    public void incrementDrawCounter(){
         drawCounter++;
     }
     public Card getCard(){
-        increaseDrawCounter();
+        incrementDrawCounter();
         return deck.get(drawCounter);
     }
     /*
