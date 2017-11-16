@@ -9,7 +9,7 @@ public class Dealer {
         hand = new ArrayList<Card>();
         username = "Dealer";
         points = 0;
-        boolean hidecard = true;
+        hidecard = true;
     }
     public String getUsername(){
         return username;
@@ -23,7 +23,7 @@ public class Dealer {
     public void revealCard(){
         hidecard = false;
     }
-    public void displayHand(boolean hidecard){ //print the player's hand as ascii art xd
+    public void displayHand(){ //print the player's hand as ascii art xd
         String border = "+-----+  ";
         String cardback = "+++++++  ";
 

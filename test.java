@@ -18,21 +18,22 @@ public class test {
         System.out.println();
 
         //dealer hits
-        larry.hit(vegas.getCard()); 
-        larry.hit(vegas.getCard());
+        larry.hit(vegas.draw()); 
+        larry.hit(vegas.draw());
         //print dealer hand
         System.out.println(larry.getUsername());
-        larry.displayHand(false);
+        larry.displayHand();
         System.out.println(larry.getUsername());
-        larry.displayHand(true);
+        larry.revealCard();
+        larry.displayHand();
 
         //tentative code; just gives each player two random cards from the beginning of the deck
         for(int i = 0; i < numPlayers; i++) {
             Player temp = blackjack.getPlayer(i);
-            temp.hit(vegas.getCard());
-            temp.addScore(vegas.getCard().getValue());
-            temp.hit(vegas.getCard());
-            temp.addScore(vegas.getCard().getValue());
+            temp.hit(vegas.draw());
+            temp.addScore(vegas.draw().getValue());
+            temp.hit(vegas.draw());
+            temp.addScore(vegas.draw().getValue());
             System.out.println("Player: " + temp.getUsername());
             temp.displayHand();
             System.out.println("Score: " + temp.getScore());
