@@ -26,7 +26,7 @@ public class Deck {
     public void incrementDrawCounter(){
         drawCounter++;
     }
-    public Card getCard(){
+    public Card draw(){
         incrementDrawCounter();
         return deck.get(drawCounter);
     }
