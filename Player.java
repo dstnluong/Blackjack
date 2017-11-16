@@ -2,20 +2,20 @@ import java.util.*;
 
 public class Player {
     ArrayList<Card> hand;
-    int points, balance, bet;
+    int balance, bet, score;
     String username;
     public Player(String playerName) {
         hand = new ArrayList<Card>();
         username = playerName;
-        points = 0;
+        score = 0;
         bet = 0;
         balance = 1000;
     }
     public String getUsername(){
         return username;
     }
-    public int getPoints() {
-        return points;
+    public int getScore() {
+        return score;
     }
     public void hit(Card c) {
     	hand.add(c);
@@ -29,6 +29,9 @@ public class Player {
     }
     public Card getCard(int index){
         return hand.get(index);
+    }
+    public void addScore(int value) {
+        score += value;
     }
     public void displayHand(){ //print the player's hand as ascii art xd
         String border = "+-----+  ";
