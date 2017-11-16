@@ -17,21 +17,22 @@ public class Player {
     public int getScore() {
         return score;
     }
-    public void hit(Card c) {
-    	hand.add(c);
-    }
-    public void bet(int amount) {
-   		if(amount > balance) {
-   			System.out.print("You don't have enough money.");
-   		} else {
-   			bet = amount;
-    	}
-    }
     public Card getCard(int index){
         return hand.get(index);
     }
-    public void addScore(int value) {
-        score += value;
+    public void hit(Card c) {
+        hand.add(c);
+        score += c.getValue();
+    }
+    public void bet(int amount) {
+        if(amount > balance) {
+            System.out.print("You don't have enough money.");
+        } else {
+            bet = amount;
+        }
+    }
+    public boolean checkBust() {
+        return(score > 21);
     }
     public void displayHand(){ //print the player's hand as ascii art xd
         String border = "+-----+  ";

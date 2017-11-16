@@ -31,12 +31,11 @@ public class test {
         for(int i = 0; i < numPlayers; i++) {
             Player temp = blackjack.getPlayer(i);
             temp.hit(vegas.draw());
-            temp.addScore(vegas.draw().getValue());
             temp.hit(vegas.draw());
-            temp.addScore(vegas.draw().getValue());
             System.out.println("Player: " + temp.getUsername());
             temp.displayHand();
             System.out.println("Score: " + temp.getScore());
+            System.out.println();
         }
 
         /*
