@@ -12,8 +12,7 @@ public class test {
         int numPlayers = in.nextInt();
         for(int i = 1; i <= numPlayers; i++) {
             System.out.print("Player " + i + " name: ");
-            Player p = new Player(in.next());
-            blackjack.addPlayer(p);
+            blackjack.addPlayer(in.next());
         }
         System.out.println();
 
