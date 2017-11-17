@@ -2,8 +2,8 @@ import java.util.*;
 
 public class Player {
     ArrayList<Card> hand;
-    int balance, bet, score;
-    String username;
+    private int balance, bet, score;
+    private String username;
     public Player(String playerName) {
         hand = new ArrayList<Card>();
         username = playerName;
@@ -14,8 +14,12 @@ public class Player {
     public String getUsername(){
         return username;
     }
-    public int getScore() {
-        return score;
+    public void getScore() {
+        if(score > 21) {
+            System.out.print("BUST");
+        } else {
+            System.out.print(score);
+        }
     }
     public Card getCard(int index){
         return hand.get(index);

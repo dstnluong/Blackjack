@@ -1,6 +1,6 @@
 public class Card {
-	String rank, suit; 
-	int value;
+	private String rank, suit; 
+	private int value;
 	public Card(String cardRank, String cardSuit) {
 		rank = cardRank;		
 		suit = cardSuit;

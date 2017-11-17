@@ -1,8 +1,8 @@
 import java.util.*; 
 public class Deck {
     ArrayList<Card> deck;
-    String[] rank, suit;
-    int drawCounter;
+    private String[] rank, suit;
+    private int drawCounter;
     public Deck() {
         deck = new ArrayList<Card>();
         drawCounter = -1;

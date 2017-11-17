@@ -16,9 +16,18 @@ public class test {
             blackjack.addPlayer(p);
         }
         System.out.println();
-
+        
         blackjack.newGame();
         blackjack.displayGame();
+        
+        //testing code: Player 1 hits twice
+        System.out.println();
+        blackjack.getPlayer(0).hit(vegas.draw());
+        blackjack.getPlayer(0).hit(vegas.draw());
+        blackjack.getPlayer(0).displayHand();
+        System.out.print("Score: ");
+        blackjack.getPlayer(0).getScore();
+
         //tentative code; just gives each player two random cards from the beginning of the deck
         /*
         for(int i = 0; i < numPlayers; i++) {

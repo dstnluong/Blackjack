@@ -2,9 +2,9 @@ import java.util.*;
 
 public class Dealer {
     ArrayList<Card> hand;
-    int points;
-    String username;
-    boolean hidecard;
+    private int points;
+    private String username;
+    private boolean hidecard;
     public Dealer(){
         hand = new ArrayList<Card>();
         username = "Dealer";
@@ -73,6 +73,6 @@ public class Dealer {
         for(int j = 0; j < hand.size(); j++){
             System.out.print(border);
         }
-        System.out.println("");
+        System.out.println();
     }
 }

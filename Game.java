@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Game {
-	private ArrayList<Player> players;
+	ArrayList<Player> players;
     private Dealer dealer; 
     private Deck deck;
 	public Game() {
@@ -31,8 +31,12 @@ public class Game {
         System.out.println("Dealer");
         dealer.displayHand();
         for(int i = 0; i < players.size(); i++) {
+        	System.out.println();
             System.out.println("Player " + (i+1) + ": " + players.get(i).getUsername());
             players.get(i).displayHand();
+            System.out.print("Score: ");
+            players.get(i).getScore();
+            System.out.println();
         }
     }
     public void replay(){
