@@ -18,11 +18,7 @@ public class test {
         System.out.println();
 
         blackjack.newGame();
-        larry.displayHand();
-
-        larry.revealCard();
-        larry.displayHand();
-        for(int i = 0; i < blackjack.) // NNED TO FINISH 
+        blackjack.displayGame();
         //tentative code; just gives each player two random cards from the beginning of the deck
         /*
         for(int i = 0; i < numPlayers; i++) {

@@ -13,7 +13,7 @@ public class Game {
     public void newGame(){
         dealer.hit(deck.draw());
         for(int i = 0; i < players.size(); i++){
-            for(int j = 0; i < 2; i++){ 
+            for(int j = 0; j < 2; j++){ 
                 players.get(i).hit(deck.draw());
             }
         }
@@ -27,12 +27,21 @@ public class Game {
 	public void removePlayer(Player oldPlayer) {
 		players.remove(oldPlayer);
 	}
+    public void displayGame(){
+        System.out.println("Dealer");
+        dealer.displayHand();
+        for(int i = 0; i < players.size(); i++) {
+            System.out.println("Player " + (i+1) + ": " + players.get(i).getUsername());
+            players.get(i).displayHand();
+        }
+    }
     public void replay(){
         for(int i = 0; i < players.size(); i++){
             players.get(i).clearHand();
         }
         dealer.clearHand();
         deck.resetDeck();
+        newGame();
     }
 	//following method isn't really necessary, just needed to test if adding players worked
 	public void printPlayers() {
