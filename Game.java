@@ -26,7 +26,7 @@ public class Game {
 		players.add(p);
 	}
 	public void removePlayer(String username) {
-		players.remove(oldPlayer); // need to fix
+		// players.remove(oldPlayer); // need to fix
 	}
     public void displayGame(){
         System.out.println("Dealer");
