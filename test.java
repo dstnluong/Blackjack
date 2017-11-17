@@ -7,13 +7,14 @@ public class test {
         Deck vegas = new Deck();
         Dealer larry = new Dealer();
 
+        Header header = new Header();
+        header.printHeader();
         //determines # of players and adds them to arraylist of players
         System.out.print("How many players? ");
         int numPlayers = in.nextInt();
         for(int i = 1; i <= numPlayers; i++) {
             System.out.print("Player " + i + " name: ");
-            Player p = new Player(in.next());
-            blackjack.addPlayer(p);
+            blackjack.addPlayer(in.next());
         }
         System.out.println();
         
