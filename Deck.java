@@ -1,5 +1,4 @@
-import java.util.*;
-
+import java.util.*; 
 public class Deck {
     ArrayList<Card> deck;
     String[] rank, suit;
@@ -30,7 +29,12 @@ public class Deck {
         incrementDrawCounter();
         return deck.get(drawCounter);
     }
+    public void resetDeck(){
+        drawCounter = -1;
+        shuffle();
+    }
     /*
+     * 
     public String getRank(int index) {
     	return deck.get(index).getRank();
     }

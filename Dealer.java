@@ -23,6 +23,9 @@ public class Dealer {
     public void revealCard(){
         hidecard = false;
     }
+    public void clearHand(){
+        hand.clear();
+    } 
     public void displayHand(){ //print the player's hand as ascii art xd
         String border = "+-----+  ";
         String cardback = "+++++++  ";

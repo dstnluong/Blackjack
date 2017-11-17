@@ -20,6 +20,9 @@ public class Player {
     public Card getCard(int index){
         return hand.get(index);
     }
+    public void clearHand(){
+        hand.clear();
+    }
     public void hit(Card c) {
         hand.add(c);
         score += c.getValue();
