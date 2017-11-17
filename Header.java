@@ -1,9 +1,7 @@
 public class Header {
-    public Header(){
-
-
+    public Header() {
     }
-    public void printHeader(){
+    public void printHeader() {
         System.out.println("╔╗ ┬  ┌─┐┌─┐┬┌─ ┬┌─┐┌─┐┬┌─");
         System.out.println("╠╩╗│  ├─┤│  ├┴┐ │├─┤│  ├┴┐");
         System.out.println("╚═╝┴─┘┴ ┴└─┘┴ ┴└┘┴ ┴└─┘┴ ┴");

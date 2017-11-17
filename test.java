@@ -6,9 +6,11 @@ public class test {
         Game blackjack = new Game();
         Deck vegas = new Deck();
         Dealer larry = new Dealer();
+        //leave the =====BLACKJACK===== line for me, since my computer can't recognize the characters in the Header() class
+        //System.out.println("===================================BLACKJACK===================================");
+        Header title = new Header();
+        title.printHeader();
 
-        Header header = new Header();
-        header.printHeader();
         //determines # of players and adds them to arraylist of players
         System.out.print("How many players? ");
         int numPlayers = in.nextInt();
@@ -21,7 +23,7 @@ public class test {
         blackjack.newGame();
         blackjack.displayGame();
         
-        //testing code: Player 1 hits twice
+        //testing code: Player 1 hits twice + print hand and score
         System.out.println();
         blackjack.getPlayer(0).hit(vegas.draw());
         blackjack.getPlayer(0).hit(vegas.draw());

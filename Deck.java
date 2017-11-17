@@ -22,14 +22,14 @@ public class Deck {
     public void shuffle() {
     	Collections.shuffle(deck);
     }
-    public void incrementDrawCounter(){
+    public void incrementDrawCounter() {
         drawCounter++;
     }
-    public Card draw(){
+    public Card draw() {
         incrementDrawCounter();
         return deck.get(drawCounter);
     }
-    public void resetDeck(){
+    public void resetDeck() {
         drawCounter = -1;
         shuffle();
     }

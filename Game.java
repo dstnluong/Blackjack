@@ -10,9 +10,9 @@ public class Game {
         deck = new Deck();
 	}
 	//get player at specific index
-    public void newGame(){
+    public void newGame() {
         dealer.hit(deck.draw()); //dealer draws one
-        for(int i = 0; i < players.size(); i++){
+        for(int i = 0; i < players.size(); i++) {
             for(int j = 0; j < 2; j++){ 
                 players.get(i).hit(deck.draw()); //dealer draws 2 cards
             }
@@ -28,7 +28,7 @@ public class Game {
 	public void removePlayer(String username) {
 		// players.remove(oldPlayer); // need to fix
 	}
-    public void displayGame(){
+    public void displayGame() {
         System.out.println("Dealer");
         dealer.displayHand();
         for(int i = 0; i < players.size(); i++) {
@@ -40,8 +40,8 @@ public class Game {
             System.out.println();
         }
     }
-    public void replay(){
-        for(int i = 0; i < players.size(); i++){
+    public void replay() {
+        for(int i = 0; i < players.size(); i++) {
             players.get(i).clearHand();
         }
         dealer.clearHand();

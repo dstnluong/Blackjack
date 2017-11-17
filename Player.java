@@ -11,7 +11,7 @@ public class Player {
         bet = 0;
         balance = 1000;
     }
-    public String getUsername(){
+    public String getUsername() {
         return username;
     }
     public void getScore() {
@@ -21,10 +21,10 @@ public class Player {
             System.out.print(score);
         }
     }
-    public Card getCard(int index){
+    public Card getCard(int index) {
         return hand.get(index);
     }
-    public void clearHand(){
+    public void clearHand() {
         hand.clear();
     }
     public void hit(Card c) {
@@ -41,13 +41,13 @@ public class Player {
     public boolean checkBust() {
         return(score > 21);
     }
-    public void displayHand(){ //print the player's hand as ascii art xd
+    public void displayHand() { //print the player's hand as ascii art xd
         String border = "+-----+  ";
-        for(int j = 0; j < hand.size(); j++){
-             System.out.print(border);
+        for(int j = 0; j < hand.size(); j++) {
+            System.out.print(border);
         }
         System.out.println("");
-        for(int j = 0; j < hand.size(); j++){
+        for(int j = 0; j < hand.size(); j++) {
             String padding = " ";
             if(hand.get(j).getRank().length() == 2){ //account for "10" having two digits
                 padding = "";
@@ -55,11 +55,11 @@ public class Player {
             System.out.print("|" + hand.get(j).getRank()+ padding + "   |  ");
         }
         System.out.println("");
-        for(int j = 0; j < hand.size(); j++){
+        for(int j = 0; j < hand.size(); j++) {
             System.out.print("|  " +  hand.get(j).getSuit() + "  |  ");
         }
         System.out.println("");
-        for(int j = 0; j < hand.size(); j++){
+        for(int j = 0; j < hand.size(); j++) {
             String padding = " ";
             if(hand.get(j).getRank().length() == 2){ //account for "10" having two digits
                 padding = "";
@@ -67,7 +67,7 @@ public class Player {
             System.out.print("|   " + padding + hand.get(j).getRank() + "|  ");
         }
         System.out.println("");
-        for(int j = 0; j < hand.size(); j++){
+        for(int j = 0; j < hand.size(); j++) {
             System.out.print(border);
         }
         System.out.println("");
