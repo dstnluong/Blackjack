@@ -19,6 +19,9 @@ public class Deck {
         	}
         }
     }
+    public Card getCard(){
+        return deck.get(0);
+    }
     public void shuffle() {
     	Collections.shuffle(deck);
     }

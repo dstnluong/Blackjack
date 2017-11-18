@@ -19,7 +19,7 @@ public class test {
         }
         System.out.println();
         
-        blackjack.newGame(vegas.draw());
+        blackjack.newGame();
         larry.hit(vegas.draw());
         blackjack.getPlayer(1).hit(vegas.draw());
         larry.displayHand();
@@ -31,6 +31,8 @@ public class test {
         larry.displayHand();
         blackjack.displaySidebySide();
         
+
+        System.out.println(vegas.getCard().getRank()); 
 
         //blackjack.displayGame();
         /* 
