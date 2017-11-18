@@ -33,11 +33,9 @@ public class Game {
         dealer.displayHand();
         for(int i = 0; i < players.size(); i++) {
         	System.out.println();
-            System.out.println("Player " + (i+1) + ": " + players.get(i).getUsername());
+            System.out.printf("Player %s: %n", players.get(i).getUsername());
             players.get(i).displayHand();
-            System.out.print("Score: ");
-            players.get(i).getScore();
-            System.out.println();
+            System.out.printf("Score: %s%n", players.get(i).getScore());
         }
     }
     public void replay() {

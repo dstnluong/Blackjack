@@ -36,37 +36,32 @@ public class Dealer {
         for(int j = 0; j < hand.size(); j++) {
              System.out.print(border);
         }
-
         System.out.print("\n");
+
         if(hidecard) {
             System.out.print(cardback);
         }
         for(int j = 0; j < hand.size(); j++) {
-            String padding = " ";
-            if(hand.get(j).getRank().length() == 2) { //account for "10" having two digits
-                padding = "";
-            }
-            System.out.print("|" + hand.get(j).getRank()+ padding + "   |  ");
+            System.out.printf("|%-2s   |  ", hand.get(j).getRank());
         }
         System.out.print("\n");
+
         if(hidecard){
             System.out.print(cardback);
         } 
         for(int j = 0; j < hand.size(); j++) {
-            System.out.print("|  " +  hand.get(j).getSuit() + "  |  ");
+            System.out.printf("|  %s  |  ", hand.get(j).getSuit());
         }
         System.out.print("\n");
+
         if(hidecard){
             System.out.print(cardback);
         }
         for(int j = 0; j < hand.size(); j++) {
-            String padding = " ";
-            if(hand.get(j).getRank().length() == 2) { //account for "10" having two digits
-                padding = "";
-            }
-            System.out.print("|   " + padding + hand.get(j).getRank() + "|  ");
+            System.out.printf("|   %2s|  ", hand.get(j).getRank());
         }
         System.out.print("\n");
+
         if(hidecard){
             System.out.print(border);
         }
