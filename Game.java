@@ -33,7 +33,7 @@ public class Game {
         dealer.displayHand();
         for(int i = 0; i < players.size(); i++) {
         	System.out.println();
-            System.out.printf("Player %s: %n", players.get(i).getUsername());
+            System.out.printf("Player %s:%n", players.get(i).getUsername());
             players.get(i).displayHand();
             System.out.printf("Score: %s%n", players.get(i).getScore());
         }
