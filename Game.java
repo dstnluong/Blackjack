@@ -2,14 +2,18 @@ import java.util.*;
 
 public class Game {
 	ArrayList<Player> players;
+    private Dealer dealer;
+    private Deck deck;
 	public Game() {
 		players = new ArrayList<Player>();
+        dealer = new Dealer();
+        deck = new Deck();
 	}
 	//get player at specific index
-    public void newGame(Card c) {
+    public void newGame() {
         for(int i = 0; i < players.size(); i++) {
             for(int j = 0; j < 2; j++){ 
-                players.get(i).hit(c); //dealer draws 2 cards
+                players.get(i).hit(deck.draw()); //dealer draws 2 cards
             }
         }
     }
@@ -25,7 +29,8 @@ public class Game {
 	}
     public void displayGame() {
         System.out.println("Dealer");
-        //dealer.displayHand();
+        dealer.displayHand();
+
         for(int i = 0; i < players.size(); i++) {
         	System.out.println();
             System.out.printf("Player %s:%n", players.get(i).getUsername());
@@ -37,6 +42,9 @@ public class Game {
         for(int i = 0; i < players.size(); i++) {
             players.get(i).clearHand();
         }
+        dealer.clearHand();
+        deck.resetDeck();
+        newGame();
     }
     public void displaySidebySide(){
         String border = "+-----+";
