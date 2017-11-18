@@ -27,6 +27,7 @@ public class test {
         blackjack.getPlayer(0).hit(vegas.draw());
         blackjack.getPlayer(0).hit(vegas.draw());
         blackjack.getPlayer(0).displayHand();
+        System.out.printf("Score: %s%n", blackjack.getPlayer(0).getScore());
 
         //tentative code; just gives each player two random cards from the beginning of the deck
         /*
