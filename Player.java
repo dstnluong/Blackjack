@@ -24,6 +24,9 @@ public class Player {
     public Card getCard(int index) {
         return hand.get(index);
     }
+    public int getHandSize(){
+        return hand.size();
+    }
     public void clearHand() {
         hand.clear();
     }

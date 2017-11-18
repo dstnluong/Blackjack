@@ -19,15 +19,27 @@ public class test {
         }
         System.out.println();
         
-        blackjack.newGame();
-        blackjack.displayGame();
+        blackjack.newGame(vegas.draw());
+        larry.hit(vegas.draw());
+        blackjack.getPlayer(1).hit(vegas.draw());
+        larry.displayHand();
+
+        blackjack.displaySidebySide();
+
+        larry.revealCard(vegas.draw());
+        larry.hit(vegas.draw());
+        larry.displayHand();
+        blackjack.displaySidebySide();
         
+
+        //blackjack.displayGame();
+        /* 
         //testing code: Player 1 hits twice + print hand and score
         System.out.println();
         blackjack.getPlayer(0).hit(vegas.draw());
         blackjack.getPlayer(0).hit(vegas.draw());
         blackjack.getPlayer(0).displayHand();
-
+        */
         //tentative code; just gives each player two random cards from the beginning of the deck
         /*
         for(int i = 0; i < numPlayers; i++) {

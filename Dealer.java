@@ -20,13 +20,15 @@ public class Dealer {
     public void hit(Card c) {
         hand.add(c);
     }
-    public void revealCard() {
+    public void revealCard(Card c) {
+        hand.add(0, c);
         hidecard = false;
     }
     public void clearHand() {
         hand.clear();
     } 
     public void displayHand() { //print the player's hand as ascii art xd
+        System.out.printf("%s%n", username);
         String border = "+-----+  ";
         String cardback = "+++++++  ";
 
