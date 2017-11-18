@@ -18,7 +18,7 @@ public class Player {
         if(score > 21) {
             return "BUST";
         } else {
-            return Integer.toString(score);
+            return String.valueOf(score);
         }
     }
     public Card getCard(int index) {

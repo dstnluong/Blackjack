@@ -7,8 +7,8 @@ public class test {
         Deck vegas = new Deck();
         Dealer larry = new Dealer();
         //leave the =====BLACKJACK===== line for me, since my computer can't recognize the characters in the Header() class
-        //System.out.println("===================================BLACKJACK===================================");
-        AsciiArt.printHeader();
+        System.out.println("===================================BLACKJACK===================================");
+        //AsciiArt.printHeader();
 
         //determines # of players and adds them to arraylist of players
         System.out.print("How many players? ");
@@ -39,6 +39,7 @@ public class test {
         blackjack.getPlayer(0).hit(vegas.draw());
         blackjack.getPlayer(0).hit(vegas.draw());
         blackjack.getPlayer(0).displayHand();
+        System.out.printf("Score: %s%n", blackjack.getPlayer(0).getScore());
         */
         //tentative code; just gives each player two random cards from the beginning of the deck
         /*
