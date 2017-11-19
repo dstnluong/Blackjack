@@ -50,7 +50,7 @@ public class Game {
         String border = "+-----+";
         int playersperline = 3;
         for(int s = 0; s < players.size(); s = s + playersperline) {
-            for(int i = s; i < s + playersperline; i++){
+            for(int i = s; i < s + playersperline && i < players.size(); i++){
                 System.out.printf("%-18s", players.get(i).getUsername());
                 for(int j = 0; j < players.get(i).getHandSize() - 2; j++){
                     System.out.printf("%9s", " ");
@@ -58,35 +58,35 @@ public class Game {
             }
             System.out.printf("%n");
 
-            for(int i = s; i < s + playersperline; i++){
+            for(int i = s; i < s + playersperline && i < players.size(); i++){
                 for(int j = 0; j < players.get(i).getHandSize(); j++){
                     System.out.printf("%-9s", border);
                 }                
             }
             System.out.printf("%n");
 
-            for(int i = s; i < s + playersperline; i++){
+            for(int i = s; i < s + playersperline && i < players.size(); i++){
                 for(int j = 0; j < players.get(i).getHandSize(); j++){
                     System.out.printf("|%-5s|  ", players.get(i).getCard(j).getRank());
                 }
             }
             System.out.printf("%n");
 
-            for(int i = s; i < s + playersperline; i++){
+            for(int i = s; i < s + playersperline && i < players.size(); i++){
                 for(int j = 0; j < players.get(i).getHandSize(); j++){
                     System.out.printf("|%3s  |  ", players.get(i).getCard(j).getSuit());
                 }
             }
             System.out.printf("%n");
 
-            for(int i = s; i < s + playersperline; i++){
+            for(int i = s; i < s + playersperline && i < players.size(); i++){
                 for(int j = 0; j < players.get(i).getHandSize(); j++){
                     System.out.printf("|%5s|  ", players.get(i).getCard(j).getRank());
                 }
             }
             System.out.printf("%n");
  
-            for(int i = s; i < s + playersperline; i++){
+            for(int i = s; i < s + playersperline && i < players.size(); i++){
                 for(int j = 0; j < players.get(i).getHandSize(); j++){
                     System.out.printf("%-9s", border);
                 }
