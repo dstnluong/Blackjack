@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Game {
-	ArrayList<Player> players;
+    ArrayList<Player> players;
     private Dealer dealer;
     private Deck deck;
 	public Game() {
