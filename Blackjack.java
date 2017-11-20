@@ -26,4 +26,21 @@ public class Blackjack {
             */
         }
     }
+    /*
+    public void newGame() {
+        for(int i = 0; i < players.size(); i++) {
+            for(int j = 0; j < 2; j++){
+                players.get(i).hit(deck.draw()); //dealer draws 2 cards
+            }
+        }
+    }
+     public void replay() {
+          for(int i = 0; i < players.size(); i++) {
+              players.get(i).clearHand();
+          }
+          dealer.clearHand();
+          deck.resetDeck();
+          newGame();
+    }
+    */
 }
