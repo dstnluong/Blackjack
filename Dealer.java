@@ -28,8 +28,7 @@ public class Dealer {
         hand.clear();
     } 
     public void displayHand() { //print the player's hand as ascii art xd
-        System.out.printf("%n");
-        System.out.printf("%s%n", username);
+        System.out.printf("%n%s%n", username);
         String border = "+-----+  ";
         String cardback = "+++++++  ";
 
@@ -71,6 +70,6 @@ public class Dealer {
         for(int j = 0; j < hand.size(); j++) {
             System.out.print(border);
         }
-        System.out.println();
+        System.out.printf("%n%n");
     }
 }

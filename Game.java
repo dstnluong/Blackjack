@@ -64,13 +64,15 @@ public class Game {
                     System.out.printf("%-9s", border);
                 }
             }
+            /*
             for(int i = s; i < s + playersperline && i < players.size(); i++){
                 for(int j = 0; j < players.get(i).getHandSize(); j++){
                     System.out.printf("Score: %s%n", players.get(i).getScore());
                 }
             }
-
-            System.out.printf("%n%n");
+			*/
+            System.out.printf("%n");
         }
+        System.out.printf("%n");
     }
 }

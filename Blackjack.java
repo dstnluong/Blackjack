@@ -18,7 +18,6 @@ public class Blackjack {
         	bj.addPlayer(in.next());
         }
         newGame();
-        displayGame();
 
         for(int i = 0; i < playerCount; i++) {
         	boolean playerTurn = true;
@@ -62,6 +61,8 @@ public class Blackjack {
             }
         }
         dealer.hit(deck.draw());
+        dealer.displayHand();
+        bj.displaySidebySide();
     }
     
     /*
