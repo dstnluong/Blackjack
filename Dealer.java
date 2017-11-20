@@ -28,6 +28,7 @@ public class Dealer {
         hand.clear();
     } 
     public void displayHand() { //print the player's hand as ascii art xd
+        System.out.printf("%n");
         System.out.printf("%s%n", username);
         String border = "+-----+  ";
         String cardback = "+++++++  ";

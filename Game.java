@@ -5,6 +5,9 @@ public class Game {
 	public Game() {
 		players = new ArrayList<Player>();
 	}
+	public ArrayList<Player> getPlayers() {
+		return players;
+	}
 	//get player at specific index
 	public Player getPlayer(int index) {
 		return players.get(index);
@@ -14,7 +17,7 @@ public class Game {
 		players.add(p);
 	}
 	public void removePlayer(String username) {
-		// players.remove(oldPlayer); // need to fix
+		// players.remove(username); // need to fix
 	}
     public void displaySidebySide(){
         String border = "+-----+";
