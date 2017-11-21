@@ -47,9 +47,13 @@ public class Blackjack {
         	boolean playerTurn = true;
             displayGame();
         	while(playerTurn && !busted(i)) { 
-        		System.out.printf("%s's turn%n", bj.getPlayer(i).getUsername());
+        		Player p = bj.getPlayer(i);
+        		System.out.printf("%s's turn%n", p.getUsername());
         		System.out.println("Press [1] to hit.");
         		System.out.println("Press [2] to stand.");
+        		if(2*p.getBet() <= p.getBalance()) {
+        			System.out.println("Press [3] to double down.");
+        		}
         		int input = in.nextInt();
         		switch(input) {
         			case 1: 
@@ -59,6 +63,12 @@ public class Blackjack {
         			case 2: 
                         playerTurn = false;
                         displayGame();
+        				break;
+        			case 3:
+        				hit(i);
+        				p.bet(2*p.getBet());
+        				playerTurn = false;
+        				displayGame();
         				break;
         		}
         	}
@@ -70,8 +80,10 @@ public class Blackjack {
         displayGame();
         dealerTurn();
             /*
-            System.out.println("1.New Game");
-            System.out.println("2.Quit");
+            System.out.println("[1] Replay");
+            System.out.println("[2] Add a player");
+            System.out.println("[2] Remove a player");
+            System.out.println("[4] Quit");
             int userInput = in.nextInt();
             switch(userInput){
                 case(1):
