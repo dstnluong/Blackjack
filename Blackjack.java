@@ -18,6 +18,7 @@ public class Blackjack {
 
         System.out.print("Number of players: ");
         int playerCount = in.nextInt();
+<<<<<<< HEAD
 
         for(int i = 0; i < playerCount; i++) {
         	System.out.printf("Player %d's name: ", i + 1);
@@ -42,6 +43,10 @@ public class Blackjack {
                 }
         	}
         } 
+=======
+        bj.addPlayers(playerCount);        
+
+>>>>>>> 66cee527dae8fc3f67a163c38753c65c1f5beacf
         newGame();
         System.out.printf("%n");
 
@@ -118,7 +123,7 @@ public class Blackjack {
             			break;
             		case 2:
             			System.out.print("Player name: ");
-            			bj.addPlayer(in.next());
+            			bj.addPlayers(1);
             			break;
             		case 3:
             			System.out.print("");
