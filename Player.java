@@ -2,6 +2,7 @@ import java.util.*;
 public class Player {
     private ArrayList<Card> hand;
     private int balance, bet, score;
+    private boolean bust;
     private String username;
     public Player(String playerName) {
         hand = new ArrayList<Card>();
@@ -9,9 +10,13 @@ public class Player {
         score = 0;
         bet = 0;
         balance = 1000;
+        bust = false;
     }
     public String getUsername() {
         return username;
+    }
+    public boolean checkBust() {
+        return bust;
     }
     public int getScore() {
         return score;
@@ -24,6 +29,7 @@ public class Player {
     }
     public String getScoreString() {
         if(score > 21) {
+            bust = true;
             return "BUST";
         } else {
             return String.valueOf(score);
@@ -63,9 +69,6 @@ public class Player {
     }
     public void bet(int amount) {
         bet = amount;
-    }
-    public boolean checkBust() {
-        return(score > 21);
     }
     public void displayHand() { //print the player's hand as ascii art xd
         String border = "+-----+  ";
