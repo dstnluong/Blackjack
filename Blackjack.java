@@ -27,7 +27,7 @@ public class Blackjack {
 
         for(int i = 0; i < bj.players.size(); i++) {
         	boolean playerTurn = true;
-            bj.displayPlayer(i);
+            displayGame();
         	while(playerTurn && !busted(i)) { 
         		System.out.printf("%s's turn%n", bj.getPlayer(i).getUsername());
         		System.out.println("Press [1] to hit.");
