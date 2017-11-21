@@ -65,7 +65,6 @@ public class Blackjack {
         //}
     }
     public static void displayGame() {
-
         clearScreen();
         AsciiArt.printHeader();
     	dealer.displayHand();
@@ -80,22 +79,27 @@ public class Blackjack {
             }
         }
         dealer.hit(deck.draw());
-        dealer.displayHand();
-        bj.displaySidebySide();
+        //dealer.displayHand();
+        //bj.displaySidebySide();
     }
-    public static void clearScreen(){
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+    public static void clearScreen() {
+    	System.out.print("\033[H\033[2J");  
+    	System.out.flush(); 
     }
-    public static boolean busted(int playerIndex){
+    public static void clrscr() {
+    	for(int i = 0; i <= 56; i++) {
+    		System.out.println();
+    	}
+	}
+    public static boolean busted(int playerIndex) {
         return bj.getPlayer(playerIndex).getScore() > 21;
     }
-    public static void hit(int playerIndex){
+    public static void hit(int playerIndex) {
         Card c = deck.draw();
         bj.getPlayer(playerIndex).hit(c);
         bj.getPlayer(playerIndex).setScore();
     } 
-    public static void dealerTurn(){
+    public static void dealerTurn() {
         while(dealer.getScore() < 17){
             dealer.hit(deck.draw());
             dealer.setScore();

@@ -16,6 +16,7 @@ public class AsciiArt{
         System.out.println(" / _  / / _ `/ __/  '_/ / / _ `/ __/  '_/");
         System.out.println("/____/_/\\_,_/\\__/_/\\_\\_/ /\\_,_/\\__/_/\\_\\ ");
         System.out.println("                    |___/                "); 
+        
         /* Doom
         System.out.println(" _____ _            _    _            _             ");   
         System.out.println("| ___ \\ |          | |  (_)          | |           ");   
@@ -26,21 +27,7 @@ public class AsciiArt{
         System.out.println("                       _/ |                         "); 
         System.out.println("                      |__/                          "); 
         */ 
-
-        /* ANSI shadow
-        System.out.println("██████╗ ██╗      █████╗  ██████╗██╗  ██╗     ██╗ █████╗  ██████╗██╗  ██╗");
-        System.out.println("██╔══██╗██║     ██╔══██╗██╔════╝██║ ██╔╝     ██║██╔══██╗██╔════╝██║ ██╔╝");
-        System.out.println("██████╔╝██║     ███████║██║     █████╔╝      ██║███████║██║     █████╔╝ ");
-        System.out.println("██╔══██╗██║     ██╔══██║██║     ██╔═██╗ ██   ██║██╔══██║██║     ██╔═██╗ ");
-        System.out.println("██████╔╝███████╗██║  ██║╚██████╗██║  ██╗╚█████╔╝██║  ██║╚██████╗██║  ██╗");
-        System.out.println("╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝ ╚════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝");
-        */    
-        /*Calvin S
-        System.out.println("╔╗ ┬  ┌─┐┌─┐┬┌─ ┬┌─┐┌─┐┬┌─  ");
-        System.out.println("╠╩╗│  ├─┤│  ├┴┐ │├─┤│  ├┴┐  ");
-        System.out.println("╚═╝┴─┘┴ ┴└─┘┴ ┴└┘┴ ┴└─┘┴ ┴  ");
-        */
-
+    
         System.out.println("======by Andrew Tran and Dustin Luong=======");
     }
 }
