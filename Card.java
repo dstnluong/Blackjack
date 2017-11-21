@@ -12,14 +12,19 @@ public class Card {
 	public String getSuit(){
 		return suit;
 	}
-	public int getValue() {
+    public void demoteAce(){
+        value = 1;
+    }
+	public void setValue() {
 		if(rank.matches("\\d")) { //checks if the rank is a digit
-			value = Integer.parseInt(rank);
+		    value = Integer.parseInt(rank);
 		} else if(rank.equals("A")) {
-			value = 11;
+		    value = 11;
 		} else {
-			value = 10;
+		    value = 10;
 		}
-		return value;
-	}
+    }
+    public int getValue(){
+        return value;
+    }
 }

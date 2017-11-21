@@ -1,7 +1,6 @@
 import java.util.*;
-
 public class Player {
-    ArrayList<Card> hand;
+    private ArrayList<Card> hand;
     private int balance, bet, score;
     private String username;
     public Player(String playerName) {
@@ -14,7 +13,10 @@ public class Player {
     public String getUsername() {
         return username;
     }
-    public String getScore() {
+    public int getScore(){
+        return score;
+    }
+    public String getScoreString() {
         if(score > 21) {
             return "BUST";
         } else {
@@ -32,7 +34,26 @@ public class Player {
     }
     public void hit(Card c) {
         hand.add(c);
-        score += c.getValue();
+        setScore();
+    }
+    public void setScore(){ // this is actually so mf ugly
+        score = 0;
+        for(int i = 0; i < hand.size(); i++){
+            score += hand.get(i).getValue();
+        }
+        if(score > 21) {
+            for(int i = 0; i < hand.size(); i++){
+                Card a = hand.get(i);
+                if(a.getRank().equals("A")){
+                    a.demoteAce();
+                }
+            }
+        }
+        score = 0;
+        for(int i = 0; i < hand.size(); i++){
+            score += hand.get(i).getValue();
+        }
+
     }
     public void bet(int amount) {
         if(amount > balance) {

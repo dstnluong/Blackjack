@@ -15,12 +15,10 @@ public class Deck {
         for(int i = 0; i < 13; i++) {
         	for(int j = 0; j < 4; j++) {
         		Card c = new Card(rank[i], suit[j]);
+                c.setValue();
         		deck.add(c);
         	}
         }
-    }
-    public Card getCard(){
-        return deck.get(0);
     }
     public void shuffle() {
     	Collections.shuffle(deck);
@@ -36,16 +34,4 @@ public class Deck {
         drawCounter = -1;
         shuffle();
     }
-    /*
-     * 
-    public String getRank(int index) {
-    	return deck.get(index).getRank();
-    }
-    public String getSuit(int index) {
-    	return deck.get(index).getSuit();
-    }
-    public int getValue(int index) {
-    	return deck.get(index).getValue();
-    }
-    */
 }

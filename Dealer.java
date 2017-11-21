@@ -2,26 +2,55 @@ import java.util.*;
 
 public class Dealer {
     ArrayList<Card> hand;
-    private int points;
+    private int score;
     private String username;
     private boolean hidecard;
     public Dealer() {
         hand = new ArrayList<Card>();
         username = "Dealer";
-        points = 0;
+        score = 0;
         hidecard = true;
     }
     public String getUsername(){
         return username;
     }
-    public int getPoints() {
-        return points;
+    public String getScoreString() {
+        if(score > 21) {
+            return "BUST";
+        } else {
+            return String.valueOf(score);
+        }
+    }
+    public int getHandSize(){
+        return hand.size();
+    }
+    public int getScore() {
+        return score;
     }
     public void hit(Card c) {
         hand.add(c);
+        setScore();
     }
-    public void revealCard(Card c) {
-        hand.add(0, c);
+    public void setScore(){ // this is actually so mf ugly
+        score = 0;
+        for(int i = 0; i < hand.size(); i++){
+            score += hand.get(i).getValue();
+        }
+        if(score > 21) {
+            for(int i = 0; i < hand.size(); i++){
+                Card a = hand.get(i);
+                if(a.getRank().equals("A")){
+                    a.demoteAce();
+                }
+            }
+        }
+        score = 0;
+        for(int i = 0; i < hand.size(); i++){
+            score += hand.get(i).getValue();
+        }
+
+    }
+    public void revealCard() {
         hidecard = false;
     }
     public void clearHand() {
@@ -44,7 +73,7 @@ public class Dealer {
             System.out.print(cardback);
         }
         for(int j = 0; j < hand.size(); j++) {
-            System.out.printf("|%-2s   |  ", hand.get(j).getRank());
+            System.out.printf("|%-5s|  ", hand.get(j).getRank());
         }
         System.out.print("\n");
 
@@ -60,7 +89,7 @@ public class Dealer {
             System.out.print(cardback);
         }
         for(int j = 0; j < hand.size(); j++) {
-            System.out.printf("|   %2s|  ", hand.get(j).getRank());
+            System.out.printf("|%5s|  ", hand.get(j).getRank());
         }
         System.out.print("\n");
 
@@ -70,6 +99,8 @@ public class Dealer {
         for(int j = 0; j < hand.size(); j++) {
             System.out.print(border);
         }
-        System.out.printf("%n%n");
+        System.out.printf("%n");
+
+        System.out.printf("Score: %-11s%n%n", score);
     }
 }
