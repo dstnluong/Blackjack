@@ -16,6 +16,12 @@ public class Player {
     public int getScore() {
         return score;
     }
+    public int getBet() {
+        return bet;
+    }
+    public int getBalance() {
+        return balance;
+    }
     public String getScoreString() {
         if(score > 21) {
             return "BUST";
@@ -56,11 +62,7 @@ public class Player {
 
     }
     public void bet(int amount) {
-        if(amount > balance) {
-            System.out.print("You don't have enough money.");
-        } else {
-            bet = amount;
-        }
+        bet = amount;
     }
     public boolean checkBust() {
         return(score > 21);

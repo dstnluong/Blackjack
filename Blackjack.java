@@ -15,7 +15,7 @@ public class Blackjack {
         //while(playing) { 
 
         clearScreen();
-        //AsciiArt.printHeader();
+        AsciiArt.printHeader();
 
         System.out.print("Number of players: ");
         int playerCount = in.nextInt();
@@ -24,7 +24,25 @@ public class Blackjack {
         	bj.addPlayer(in.next());
         }
         newGame();
+        System.out.printf("%n");
 
+        //bet
+        for(int i = 0; i < bj.players.size(); i++) {
+        	Player p = bj.getPlayer(i);
+        	System.out.printf("%s's current balance: $%d%n", p.getUsername(), p.getBalance());
+        	while(true) {
+        		System.out.print("Bet: $");
+        		int bet = Math.abs(in.nextInt());
+        		if(bet > p.getBalance()) {
+        			System.out.println("You don't have enough money.");
+        		} else {
+        			p.bet(bet);
+        			break;
+        		}
+        	} 
+        }
+
+        //play
         for(int i = 0; i < bj.players.size(); i++) {
         	boolean playerTurn = true;
             displayGame();

@@ -66,10 +66,18 @@ public class Game {
                     System.out.printf("%-9s", border);
                 }
             }
-           System.out.printf("%n"); 
+            System.out.printf("%n"); 
 
             for(int i = s; i < s + playersperline && i < players.size(); i++) { //score
                 System.out.printf("Score: %-11s", players.get(i).getScoreString());
+                for(int j = 0; j < players.get(i).getHandSize() - 2; j++) {
+                    System.out.printf("%9s", " ");
+                }
+            }
+            System.out.printf("%n");
+
+            for(int i = s; i < s + playersperline && i < players.size(); i++) { //bet
+                System.out.printf("Bet: $%-12d", players.get(i).getBet());
                 for(int j = 0; j < players.get(i).getHandSize() - 2; j++) {
                     System.out.printf("%9s", " ");
                 }
