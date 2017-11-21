@@ -42,7 +42,7 @@ public class Player {
         hand.add(c);
         setScore();
     }
-    public void setScore(){ // this is actually so mf ugly
+    public void setScore() { // this is actually so mf ugly
         score = 0;
         for(int i = 0; i < hand.size(); i++){
             score += hand.get(i).getValue();

@@ -55,21 +55,25 @@ public class Blackjack {
         			System.out.println("Press [3] to double down.");
         		}
         		int input = in.nextInt();
-        		switch(input) {
-        			case 1: 
-                        hit(i);
-                        displayGame();
-        				break;
-        			case 2: 
-                        playerTurn = false;
-                        displayGame();
-        				break;
-        			case 3:
-        				hit(i);
-        				p.bet(2*p.getBet());
-        				playerTurn = false;
-        				displayGame();
-        				break;
+        		if(p.getScore() < 21) {
+        			switch(input) {
+        				case 1: 
+                        	hit(i);
+                        	displayGame();
+        					break;
+        				case 2: 
+	                        playerTurn = false;
+    	                    displayGame();
+        					break;
+        				case 3:
+        					hit(i);
+        					p.bet(2*p.getBet());
+        					playerTurn = false;
+        					displayGame();
+        					break;
+        			}
+        		} else {
+        			playerTurn = false;
         		}
         	}
             System.out.printf("%n");
@@ -104,8 +108,8 @@ public class Blackjack {
     public static void newGame() {
         for(int i = 0; i < bj.players.size(); i++) {
             for(int j = 0; j < 2; j++) {
-            	Player temp = bj.getPlayers().get(i);
-                temp.hit(deck.draw()); 
+            	Player p = bj.getPlayers().get(i);
+                p.hit(deck.draw()); 
             }
         }
         dealer.hit(deck.draw());
