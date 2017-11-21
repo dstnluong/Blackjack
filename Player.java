@@ -65,7 +65,6 @@ public class Player {
         for(int i = 0; i < hand.size(); i++){
             score += hand.get(i).getValue();
         }
-
     }
     public void bet(int amount) {
         bet = amount;

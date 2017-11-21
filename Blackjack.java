@@ -114,8 +114,6 @@ public class Blackjack {
             }
         }
         dealer.hit(deck.draw());
-        //dealer.displayHand();
-        //bj.displaySidebySide();
     }
     public static void clearScreen() {
     	System.out.print("\033[H\033[2J");  
@@ -126,9 +124,6 @@ public class Blackjack {
     		System.out.println();
     	}
 	}
-    /*public static boolean busted(int playerIndex) {
-        return bj.getPlayer(playerIndex).getScore() > 21;
-    }*/
     public static void hit(int playerIndex) {
         Card c = deck.draw();
         bj.getPlayer(playerIndex).hit(c);
@@ -163,22 +158,6 @@ public class Blackjack {
         	}
         }
     }
-    /*
-    public static String[] getWinners(){
-        bj.getPlayers();
-
-        String [] winners = new String[bj.numOfPlayers()];
-
-        int highestScore = 0;
-        for(int i = 0; i < bj.numOfPlayers();i++){
-            int String = bj.getPlayer(i);
-            if(players(i).getScore().matches("\\d")){
-                int playerScore = String.valueOf(players(i).getScore());
-                highestScore = Math.max(highestScore, playerScore);
-            }
-        }
-    }
-    */
     /*
     public void replay() {
         for(int i = 0; i < players.size(); i++) {
