@@ -19,63 +19,110 @@ public class Game {
 	public void removePlayer(String username) {
 		// players.remove(username); // need to fix
 	}
-    public void displaySidebySide(){
+    public void displaySidebySide() {
         String border = "+-----+";
         int playersperline = 3;
 
         for(int s = 0; s < players.size(); s = s + playersperline) {
 
-            for(int i = s; i < s + playersperline && i < players.size(); i++){ //username
+            for(int i = s; i < s + playersperline && i < players.size(); i++) { //username
                 System.out.printf("%-18s", players.get(i).getUsername());
-                for(int j = 0; j < players.get(i).getHandSize() - 2; j++){
+                for(int j = 0; j < players.get(i).getHandSize() - 2; j++) {
                     System.out.printf("%9s", " ");
                 }
             }
             System.out.printf("%n");
 
-            for(int i = s; i < s + playersperline && i < players.size(); i++){ // border
-                for(int j = 0; j < players.get(i).getHandSize(); j++){
+            for(int i = s; i < s + playersperline && i < players.size(); i++) { // border
+                for(int j = 0; j < players.get(i).getHandSize(); j++) {
                     System.out.printf("%-9s", border);
                 }                
             }
             System.out.printf("%n");
 
-            for(int i = s; i < s + playersperline && i < players.size(); i++){ //rank
-                for(int j = 0; j < players.get(i).getHandSize(); j++){
+            for(int i = s; i < s + playersperline && i < players.size(); i++) { //rank
+                for(int j = 0; j < players.get(i).getHandSize(); j++) {
                     System.out.printf("|%-5s|  ", players.get(i).getCard(j).getRank());
                 }
             }
             System.out.printf("%n");
 
-            for(int i = s; i < s + playersperline && i < players.size(); i++){ //suit
-                for(int j = 0; j < players.get(i).getHandSize(); j++){
+            for(int i = s; i < s + playersperline && i < players.size(); i++) { //suit
+                for(int j = 0; j < players.get(i).getHandSize(); j++) {
                     System.out.printf("|%3s  |  ", players.get(i).getCard(j).getSuit());
                 }
             }
             System.out.printf("%n");
 
-            for(int i = s; i < s + playersperline && i < players.size(); i++){ //rank
-                for(int j = 0; j < players.get(i).getHandSize(); j++){
+            for(int i = s; i < s + playersperline && i < players.size(); i++) { //rank
+                for(int j = 0; j < players.get(i).getHandSize(); j++) {
                     System.out.printf("|%5s|  ", players.get(i).getCard(j).getRank());
                 }
             }
             System.out.printf("%n");
  
-            for(int i = s; i < s + playersperline && i < players.size(); i++){ //border
-                for(int j = 0; j < players.get(i).getHandSize(); j++){
+            for(int i = s; i < s + playersperline && i < players.size(); i++) { //border
+                for(int j = 0; j < players.get(i).getHandSize(); j++) {
                     System.out.printf("%-9s", border);
                 }
             }
            System.out.printf("%n"); 
 
-            for(int i = s; i < s + playersperline && i < players.size(); i++){ //score
+            for(int i = s; i < s + playersperline && i < players.size(); i++) { //score
                 System.out.printf("Score: %-11s", players.get(i).getScoreString());
-                for(int j = 0; j < players.get(i).getHandSize() - 2; j++){
+                for(int j = 0; j < players.get(i).getHandSize() - 2; j++) {
                     System.out.printf("%9s", " ");
                 }
             }
             System.out.printf("%n");
         }
+        System.out.printf("%n");
+    }
+    public void displayPlayer(int turn) {
+        String border = "+-----+";
+
+        System.out.printf("%-18s", players.get(turn).getUsername());
+        for(int i = 0; i < players.get(turn).getHandSize() - 2; i++) {
+            System.out.printf("%9s", " ");
+        }
+
+        System.out.printf("%n");
+
+        for(int i = 0; i < players.get(turn).getHandSize(); i++) {
+            System.out.printf("%-9s", border);
+        }       
+
+        System.out.printf("%n");
+
+        for(int i = 0; i < players.get(turn).getHandSize(); i++) {
+            System.out.printf("|%-5s|  ", players.get(turn).getCard(i).getRank());
+        }
+
+        System.out.printf("%n");
+
+        for(int i = 0; i < players.get(turn).getHandSize(); i++) {
+            System.out.printf("|%3s  |  ", players.get(turn).getCard(i).getSuit());
+        }
+
+        System.out.printf("%n");
+
+        for(int i = 0; i < players.get(turn).getHandSize(); i++) {
+            System.out.printf("|%5s|  ", players.get(turn).getCard(i).getRank());
+        }
+
+        System.out.printf("%n");
+
+        for(int i = 0; i < players.get(turn).getHandSize(); i++) {
+            System.out.printf("%-9s", border);
+        }
+
+        System.out.printf("%n");
+
+        System.out.printf("Score: %-11s", players.get(turn).getScoreString());
+        for(int i = 0; i < players.get(turn).getHandSize() - 2; i++) {
+            System.out.printf("%9s", " ");
+        }
+
         System.out.printf("%n");
     }
 }

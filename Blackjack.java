@@ -15,7 +15,7 @@ public class Blackjack {
         //while(playing) { 
 
         clearScreen();
-        AsciiArt.printHeader();
+        //AsciiArt.printHeader();
 
         System.out.print("Number of players: ");
         int playerCount = in.nextInt();
@@ -27,7 +27,7 @@ public class Blackjack {
 
         for(int i = 0; i < bj.players.size(); i++) {
         	boolean playerTurn = true;
-            displayGame();
+            bj.displayPlayer(i);
         	while(playerTurn && !busted(i)) { 
         		System.out.printf("%s's turn%n", bj.getPlayer(i).getUsername());
         		System.out.println("Press [1] to hit.");

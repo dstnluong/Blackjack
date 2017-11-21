@@ -9,10 +9,10 @@ public class Card {
 	public String getRank() {
 		return rank;
 	}
-	public String getSuit(){
+	public String getSuit() {
 		return suit;
 	}
-    public void demoteAce(){
+    public void demoteAce() {
         value = 1;
     }
 	public void setValue() {
@@ -24,7 +24,7 @@ public class Card {
 		    value = 10;
 		}
     }
-    public int getValue(){
+    public int getValue() {
         return value;
     }
 }

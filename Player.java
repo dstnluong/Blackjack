@@ -13,7 +13,7 @@ public class Player {
     public String getUsername() {
         return username;
     }
-    public int getScore(){
+    public int getScore() {
         return score;
     }
     public String getScoreString() {
@@ -26,7 +26,7 @@ public class Player {
     public Card getCard(int index) {
         return hand.get(index);
     }
-    public int getHandSize(){
+    public int getHandSize() {
         return hand.size();
     }
     public void clearHand() {
