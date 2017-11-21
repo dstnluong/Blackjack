@@ -11,8 +11,7 @@ public class Blackjack {
         bj = new Game();
         deck = new Deck();
         dealer = new Dealer(); 
-        boolean playing = true;
-        //while(playing) { 
+        boolean play = true;
 
         clearScreen();
         AsciiArt.printHeader();
@@ -20,84 +19,107 @@ public class Blackjack {
         System.out.print("Number of players: ");
         int playerCount = in.nextInt();
         for(int i = 0; i < playerCount; i++) {
-            System.out.printf("Player %d's name: ", i + 1);
-        	bj.addPlayer(in.next());
-        }
+        	System.out.printf("Player %d's name: ", i + 1);
+        	String name = in.next();
+        	bj.addPlayer(name);
+        	/*for(int j = 0; j < bj.getPlayers().size(); j++) {
+        		if(name.equals(bj.getPlayer(j).getUsername())) {
+        			System.out.println("Username is already taken.");
+        			i--;
+        		} else {
+        			bj.addPlayer(name);
+        			break;
+        		}
+        	}*/
+        } 
         newGame();
         System.out.printf("%n");
 
-        //bet
-        for(int i = 0; i < playerCount; i++) {
-        	Player p = bj.getPlayer(i);
-        	System.out.printf("%s's current balance: $%d%n", p.getUsername(), p.getBalance());
-        	while(true) {
-        		System.out.print("Bet: $");
-        		int bet = Math.abs(in.nextInt());
-        		if(bet > p.getBalance()) {
-        			System.out.println("You don't have enough money.");
-        		} else {
-        			p.bet(bet);
-        			break;
-        		}
-        	} 
-        }
+        while(play) { 
+        	//bet
+        	for(int i = 0; i < playerCount; i++) {
+        		Player p = bj.getPlayer(i);
+        		System.out.printf("%s's current balance: $%d%n", p.getUsername(), p.getBalance());
+        		while(true) {
+        			System.out.print("Bet: $");
+        			int bet = Math.abs(in.nextInt());
+        			if(bet > p.getBalance()) {
+        				System.out.println("You don't have enough money.");
+        			} else {
+        				p.bet(bet);
+        				break;
+        			}
+        		} 
+        	}
 
-        //players' turns
-        for(int i = 0; i < playerCount; i++) {
-        	boolean playerTurn = true;
-            displayGame();
-        	Player p = bj.getPlayer(i);
-        	while(playerTurn && p.getScore() < 21) { 
-        		System.out.printf("%s's turn%n", p.getUsername());
-        		System.out.println("Press [1] to hit.");
-        		System.out.println("Press [2] to stand.");
-        		if(2*p.getBet() <= p.getBalance()) {
-        			System.out.println("Press [3] to double down.");
-        		}
-        		int input = in.nextInt();
-       			switch(input) {
-       				case 1: 
-                       	hit(i);
-                       	displayGame();
+        	//players' turns
+        	for(int i = 0; i < playerCount; i++) {
+        		boolean playerTurn = true;
+        		displayGame();
+        		Player p = bj.getPlayer(i);
+        		while(playerTurn && p.getScore() < 21) { 
+        			System.out.printf("%s's turn%n", p.getUsername());
+        			System.out.println("Press [1] to hit.");
+        			System.out.println("Press [2] to stand.");
+        			if(2*p.getBet() <= p.getBalance()) {
+        				System.out.println("Press [3] to double down.");
+        			}
+        			int input = in.nextInt();
+        			switch(input) {
+        				case 1: 
+        				hit(i);
+        				displayGame();
         				break;
-        			case 2: 
-	                    playerTurn = false;
-    	                displayGame();
+        				case 2: 
+        				playerTurn = false;
+        				displayGame();
         				break;
-       				case 3:
+        				case 3:
         				hit(i);
         				p.bet(2*p.getBet());
         				playerTurn = false;
         				displayGame();
         				break;
+        			}
         		}
+        		System.out.printf("%n");
         	}
-            System.out.printf("%n");
-        }
 
-        //dealer's turn 
-        dealer.revealCard();
-        dealer.hit(deck.draw());
-        dealerTurn();
-        displayGame();
+        	//dealer's turn 
+        	dealer.revealCard();
+        	dealer.hit(deck.draw());
+        	dealerTurn();
+        	displayGame();
 
-        //winner 
-        determineWinner();
+        	//winner 
+        	determineWinner();
 
-            /*
-            System.out.println("[1] Replay");
-            System.out.println("[2] Add a player");
-            System.out.println("[2] Remove a player");
-            System.out.println("[4] Quit");
-            int userInput = in.nextInt();
-            switch(userInput){
-                case(1):
-                case(2):
-                    System.out.println("Thanks for playing!");
-                    playing = false;
+            System.out.printf("%n%n");
+            boolean options = true;
+            while(options) {
+            	System.out.println("[1] Replay");
+            	System.out.println("[2] Add a player");
+            	System.out.println("[3] Remove a player");
+            	System.out.println("[4] Quit");
+            	int input = in.nextInt();
+            	switch(input) {
+            		case 1:
+            			options = false;
+            			break;
+            		case 2:
+            			System.out.print("Player name: ");
+            			bj.addPlayer(in.next());
+            			break;
+            		case 3:
+            			System.out.print("");
+            			break;
+            		case 4:
+            			System.out.println("Thanks for playing!");
+            			play = false;
+            			break;
+            	}
             }
-            */
-        //}
+        }
     }
     public static void displayGame() {
         clearScreen();
@@ -107,7 +129,7 @@ public class Blackjack {
     }
     
     public static void newGame() {
-        for(int i = 0; i < bj.players.size(); i++) {
+        for(int i = 0; i < bj.getPlayers().size(); i++) {
             for(int j = 0; j < 2; j++) {
             	Player p = bj.getPlayers().get(i);
                 p.hit(deck.draw()); 
@@ -138,7 +160,7 @@ public class Blackjack {
     public static void determineWinner() {
     	int highscore = dealer.getScore();
     	boolean dealerWin = true;
-        for(int i = 0; i < bj.players.size(); i++) {
+        for(int i = 0; i < bj.getPlayers().size(); i++) {
         	if(bj.getPlayer(i).getScore() >= highscore && !bj.getPlayer(i).checkBust()) {
         		highscore = bj.getPlayer(i).getScore();
         		dealerWin = false;
@@ -151,12 +173,17 @@ public class Blackjack {
         	if(dealer.getScore() == highscore) {
         		System.out.println("Dealer");
         	}
-        	for(int i = 0; i < bj.players.size(); i++) {
+        	for(int i = 0; i < bj.getPlayers().size(); i++) {
         		if(bj.getPlayer(i).getScore() == highscore) {
         			System.out.println(bj.getPlayer(i).getUsername());
         		}
         	}
         }
+    }
+    public static void updateBalance() {
+    	for(int i = 0; i < bj.getPlayers().size(); i++) {
+
+    	}
     }
     /*
     public void replay() {
