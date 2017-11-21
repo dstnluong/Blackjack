@@ -18,23 +18,8 @@ public class Blackjack {
 
         System.out.print("Number of players: ");
         int playerCount = in.nextInt();
-        for(int i = 0; i < playerCount; i++) {
-        	while(true) {
-        		boolean sameName = false;
-        		System.out.printf("Player %d's name: ", i + 1);
-        		String name = in.next();
-        		for(int j = 0; j < bj.getPlayers().size(); j++) {
-        			if(name.equals(bj.getPlayer(j).getUsername())) {
-        				System.out.println("Username is already taken.");
-        				sameName = true;
-        			}
-        		}
-        		if(!sameName) {
-        			bj.addPlayer(name);
-        			break;
-        		}
-        	}
-        } 
+        bj.addPlayers(playerCount);        
+
         newGame();
         System.out.printf("%n");
 
@@ -111,7 +96,7 @@ public class Blackjack {
             			break;
             		case 2:
             			System.out.print("Player name: ");
-            			bj.addPlayer(in.next());
+            			bj.addPlayers(1);
             			break;
             		case 3:
             			System.out.print("");
