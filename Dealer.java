@@ -101,6 +101,6 @@ public class Dealer {
         }
         System.out.printf("%n");
 
-        System.out.printf("Score: %-11s%n%n", score);
+        System.out.printf("Score: %-11s%n%n", getScoreString());
     }
 }
