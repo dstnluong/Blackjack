@@ -21,7 +21,7 @@ public class Game {
                 String name = in.next();
                 for(int j = 0; j < players.size(); j++) {
                     if(name.equals(getPlayer(j).getUsername())) {
-                        System.out.println("Username is already taken. Enter a different one.");
+                        System.out.println("Username is already taken. Try again.");
                         try {
                             Thread.sleep(1000);
                         } catch(InterruptedException ex) {

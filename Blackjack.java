@@ -94,6 +94,7 @@ public class Blackjack {
             	int input = in.nextInt();
             	switch(input) {
             		case 1:
+                        replay();
                         break;
             		case 2:
             			System.out.print("How many players? ");
@@ -130,7 +131,9 @@ public class Blackjack {
                 p.hit(deck.draw()); 
             }
         }
+        dealer.hideCard();
         dealer.hit(deck.draw());
+        clearScreen();
     }
     public static void clearScreen() {
     	System.out.print("\033[H\033[2J");  
@@ -141,10 +144,10 @@ public class Blackjack {
     		System.out.println();
     	}
 	}
-    public static void hit(int playerIndex) {
+    public static void hit(int index) {
         Card c = deck.draw();
-        bj.getPlayer(playerIndex).hit(c);
-        bj.getPlayer(playerIndex).setScore();
+        bj.getPlayer(index).hit(c);
+        bj.getPlayer(index).setScore();
     } 
     public static void dealerTurn() {
         while(dealer.getScore() < 17) {
@@ -153,7 +156,10 @@ public class Blackjack {
         }
     }
     public static void determineWinner() {
-    	int highscore = dealer.getScore();
+        int highscore = 0;
+        if(dealer.getScore() <= 21) {
+    	   highscore = dealer.getScore();
+        }
     	boolean dealerWin = true;
         for(int i = 0; i < bj.getPlayers().size(); i++) {
         	if(bj.getPlayer(i).getScore() >= highscore && !bj.getPlayer(i).checkBust()) {
@@ -175,9 +181,6 @@ public class Blackjack {
         	}
         }
     }
-    public static void addPlayers(){
-        
-    }
     /*
     public static void updateBalance() {
     	for(int i = 0; i < bj.getPlayers().size(); i++) {
@@ -185,14 +188,12 @@ public class Blackjack {
     	}
     }
     */
-    /*
-    public void replay() {
-        for(int i = 0; i < players.size(); i++) {
-            players.get(i).clearHand();
+    public static void replay() {
+        for(int i = 0; i < bj.getPlayers().size(); i++) {
+            bj.getPlayer(i).clearHand();
         }
         dealer.clearHand();
         deck.resetDeck();
         newGame();
     }
-    */
 }
