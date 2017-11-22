@@ -5,18 +5,24 @@ public class Blackjack {
     private static Game bj;
     private static Deck deck;
     private static Dealer dealer;
-
+    
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         bj = new Game();
         deck = new Deck();
         dealer = new Dealer(); 
+
+        int playerCount = 0;
         boolean play = true;
 
         clearScreen();
 
-        System.out.printf("Number of players: ");
-        int playerCount = in.nextInt();
+        try {
+            System.out.printf("Number of players: ");
+            playerCount = in.nextInt();
+        } catch (InputMismatchException e){
+            System.out.printf("Enter a valid number.");
+        }
         System.out.printf("%n");
         bj.addPlayers(playerCount);        
 
@@ -103,6 +109,10 @@ public class Blackjack {
             	System.out.println("[3] Remove players");
             	System.out.println("[4] Quit");
             	int input = in.nextInt();
+                while (!in.hasNext("[1-4]")) {
+                    System.out.println("Not a valid option.");
+                    in.next();
+                }
             	switch(input) {
             		case 1:
             			options = false;
