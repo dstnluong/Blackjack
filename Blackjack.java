@@ -175,11 +175,16 @@ public class Blackjack {
         	}
         }
     }
+    public static void addPlayers(){
+        
+    }
+    /*
     public static void updateBalance() {
     	for(int i = 0; i < bj.getPlayers().size(); i++) {
 
     	}
     }
+    */
     /*
     public void replay() {
         for(int i = 0; i < players.size(); i++) {
