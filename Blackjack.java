@@ -133,7 +133,7 @@ public class Blackjack {
     }
     public static void displayCurrentStandings(){
         for(int i = 0; i < bj.getPlayers().size(); i++){
-            System.out.printf("%s:%17s", bj.getPlayer(i).getUsername(), "");     
+            System.out.printf("%s:%16s", bj.getPlayer(i).getUsername(), "");     
         }
         System.out.printf("%n");
         for(int i = 0; i < bj.getPlayers().size(); i++){
