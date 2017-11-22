@@ -23,7 +23,7 @@ public class Blackjack {
 
         System.out.printf("%n");
         while(play) { 
-        	//bet
+            //bet
             System.out.printf("Betting Phase%n%n");
         	for(int i = 0; i < playerCount; i++) {
         		Player p = bj.getPlayer(i);
@@ -40,8 +40,8 @@ public class Blackjack {
         		} 
         	}
 
-            System.out.printf("%n");
         	//players' turns
+            System.out.printf("%n");
         	for(int i = 0; i < playerCount; i++) {
         		boolean playerTurn = true;
         		displayGame();
@@ -86,7 +86,7 @@ public class Blackjack {
         	determineWinner();
             for(int i = 0; i < playerCount; i++) {
                 bj.getPlayer(i).updateBalance(dealer.getScore());
-                if(bj.getPlayer(i).getBalance() <= 0) {
+                if(bj.getPlayer(i).getBalance() <= 0) {    //if balance == 0, automatically remove player
                     bj.getPlayers().remove(i);
                     playerCount--;
                 }
