@@ -24,7 +24,8 @@ public class Blackjack {
 
         while(play) { 
             clearScreen();
-        	//bet
+            
+            //bet
             System.out.printf("Betting Phase%n%n");
         	for(int i = 0; i < playerCount; i++) {
         		Player p = bj.getPlayer(i);
@@ -41,9 +42,8 @@ public class Blackjack {
         		} 
         	}
 
-            System.out.printf("%n");
-            //
         	//players' turns
+            System.out.printf("%n");
         	for(int i = 0; i < playerCount; i++) {
         		boolean playerTurn = true;
         		displayGame();
@@ -86,6 +86,13 @@ public class Blackjack {
 
         	//winner 
         	determineWinner();
+            for(int i = 0; i < playerCount; i++) {
+                bj.getPlayer(i).updateBalance(dealer.getScore());
+                if(bj.getPlayer(i).getBalance() <= 0) {    //if balance == 0, automatically remove player
+                    bj.getPlayers().remove(i);
+                    playerCount--;
+                }
+            }
             displayCurrentStandings();
 
             System.out.printf("%n%n");
@@ -104,12 +111,14 @@ public class Blackjack {
             		case 2:
             			System.out.print("How many players? ");
                         int add = in.nextInt();
-            			bj.addPlayers(add);
+                        bj.addPlayers(add);
+                        playerCount += add;
                         break;
             		case 3:
             			System.out.print("How many players? ");
                         int remove = in.nextInt();
                         bj.removePlayers(remove);
+                        playerCount -= remove;
             			break;
             		case 4:
             			System.out.printf("%nThanks for playing!%n");
@@ -126,7 +135,6 @@ public class Blackjack {
         for(int i = 0; i < bj.getPlayers().size(); i++){
             System.out.printf("%s:%17s", bj.getPlayer(i).getUsername(), "");     
         }
-
         System.out.printf("%n");
         for(int i = 0; i < bj.getPlayers().size(); i++){
             System.out.printf("Balance: %-9d", bj.getPlayer(i).getBalance());     
