@@ -2,9 +2,17 @@ import java.util.*;
 
 public class Game {
     ArrayList<Player> players;
+    int gamesPlayed;
 	public Game() {
 		players = new ArrayList<Player>();
+        gamesPlayed = 0;
 	}
+    public void increaseGamesPlayed(){
+        gamesPlayed++;
+    }
+    public int getGamesPlayed(){
+        return gamesPlayed;
+    }
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
@@ -12,31 +20,25 @@ public class Game {
 	public Player getPlayer(int index) {
 		return players.get(index);
 	}
-	public void addPlayers(int playerCount, int add) {
+	public void addPlayers(int add) {
         Scanner in = new Scanner(System.in);
-        for(int i = 0 + add; i < playerCount; i++) {
-            while(true) {
+        int numOfPlayers = players.size();
+        for(int i = numOfPlayers ; i < numOfPlayers + add; i++) {
+            boolean running = true;
+            while(running) {
                 boolean sameName = false;
                 System.out.printf("Player %d's name: ", i + 1);
                 String name = in.next();
                 for(int j = 0; j < players.size(); j++) {
                     if(name.equals(getPlayer(j).getUsername())) {
-                        System.out.println("Username is already taken. Try again.");
-                        try {
-                            Thread.sleep(1000);
-                        } catch(InterruptedException ex) {
-                            Thread.currentThread().interrupt();
-                        }
-                        System.out.print(String.format("\033[%dA",1)); // Move up
-                        System.out.print("\033[2K"); // Erase line content                        System.out.print(String.format("\033[%dA",1)); // Move up
-                        System.out.print("\033[2K"); // Erase line content
+                        System.out.println("Username is already taken. Enter a different one.");
                         sameName = true;
                     }
                 }
                 if(!sameName) {
                     Player p = new Player(name);
                     players.add(p);
-                    break;
+                    running = false;
                 }
             }
         }

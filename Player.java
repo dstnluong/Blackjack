@@ -1,7 +1,7 @@
 import java.util.*;
 public class Player {
     private ArrayList<Card> hand;
-    private int balance, bet, score;
+    private int balance, bet, score, wins;
     private boolean bust;
     private String username;
     public Player(String playerName) {
@@ -11,6 +11,19 @@ public class Player {
         bet = 0;
         balance = 1000;
         bust = false;
+        wins = 0;
+    }
+    public void increaseWins(){
+        wins++;
+    }
+    public void betWin(){
+        balance += bet;
+    }
+    public void betLose(){
+        balance -= bet;
+    }
+    public int getWins(){
+        return wins;
     }
     public String getUsername() {
         return username;
