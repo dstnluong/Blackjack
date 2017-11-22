@@ -12,9 +12,9 @@ public class Game {
 	public Player getPlayer(int index) {
 		return players.get(index);
 	}
-	public void addPlayers(int playerCount) {
+	public void addPlayers(int playerCount, int add) {
         Scanner in = new Scanner(System.in);
-        for(int i = 0; i < playerCount; i++) {
+        for(int i = 0 + add; i < playerCount; i++) {
             while(true) {
                 boolean sameName = false;
                 System.out.printf("Player %d's name: ", i + 1);
@@ -33,8 +33,29 @@ public class Game {
             }
         }
 	}
-	public void removePlayer(String username) {
-		// players.remove(username); // need to fix
+	public void removePlayers(int playerCount) {
+		Scanner in = new Scanner(System.in);
+        for(int i = 0; i < playerCount; i++) {
+            while(true) {
+                int index = 0;
+                boolean dne = true;
+                System.out.print("Player name: ");
+                String name = in.next();
+                for(int j = 0; j < players.size(); j++) {
+                    if(players.get(j).getUsername().equals(name)) {
+                        index = j;
+                        dne = false;
+                    }
+                }
+                if(dne) {
+                    System.out.printf("%s does not exist.%n", name);
+                } else {
+                    players.remove(index);
+                    System.out.printf("%s has been removed.%n", name);
+                    break;
+                }
+            }
+        }
 	}
     public void displaySidebySide() {
         String border = "+-----+";

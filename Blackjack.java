@@ -18,7 +18,7 @@ public class Blackjack {
 
         System.out.print("Number of players: ");
         int playerCount = in.nextInt();
-        bj.addPlayers(playerCount);        
+        bj.addPlayers(playerCount, 0);        
 
         newGame();
         System.out.printf("%n");
@@ -55,19 +55,21 @@ public class Blackjack {
         			int input = in.nextInt();
         			switch(input) {
         				case 1: 
-        				hit(i);
-        				displayGame();
-        				break;
+        		      		hit(i);
+        			     	displayGame();
+        	   		        break;
         				case 2: 
-        				playerTurn = false;
-        				displayGame();
-        				break;
+            				playerTurn = false;
+            				displayGame();
+        				    break;
         				case 3:
-        				hit(i);
-        				p.bet(2*p.getBet());
-        				playerTurn = false;
-        				displayGame();
-        				break;
+        				    hit(i);
+        				    p.bet(2*p.getBet());
+        				    playerTurn = false;
+        				    displayGame();
+        				    break;
+                        default:
+                            break;
         			}
         		}
         		System.out.printf("%n");
@@ -83,29 +85,34 @@ public class Blackjack {
         	determineWinner();
 
             System.out.printf("%n%n");
-            boolean options = true;
-            while(options) {
+            //boolean options = true;
+            while(true) {
             	System.out.println("[1] Replay");
-            	System.out.println("[2] Add a player");
-            	System.out.println("[3] Remove a player");
+            	System.out.println("[2] Add players");
+            	System.out.println("[3] Remove players");
             	System.out.println("[4] Quit");
             	int input = in.nextInt();
             	switch(input) {
             		case 1:
-            			options = false;
-            			break;
+                        break;
             		case 2:
-            			System.out.print("Player name: ");
-            			bj.addPlayers(1);
-            			break;
+            			System.out.print("How many players? ");
+                        int add = in.nextInt();
+            			bj.addPlayers(playerCount + add, playerCount);
+                        break;
             		case 3:
-            			System.out.print("");
+            			System.out.print("How many players? ");
+                        int remove = in.nextInt();
+                        bj.removePlayers(remove);
             			break;
             		case 4:
-            			System.out.println("Thanks for playing!");
-            			play = false;
-            			break;
+            			System.out.printf("%nThanks for playing!%n");
+                        play = false;
+                        break;
+                    default: 
+                        continue;
             	}
+                break;
             }
         }
     }
@@ -183,5 +190,4 @@ public class Blackjack {
         newGame();
     }
     */
-    
 }
