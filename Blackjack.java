@@ -70,8 +70,6 @@ public class Blackjack {
         				    playerTurn = false;
         				    displayGame();
         				    break;
-                        default:
-                            break;
         			}
         		}
         		System.out.printf("%n");
@@ -95,7 +93,12 @@ public class Blackjack {
                     i--;
                 }
             }
-            displayCurrentStandings();
+            if(playerCount == 0) {
+                System.out.printf("%nThanks for playing!%n");
+                break;
+            } else {
+                displayCurrentStandings();
+            }
 
             System.out.printf("%n%n");
             boolean options = true;
@@ -119,34 +122,36 @@ public class Blackjack {
             		case 3:
             			System.out.print("How many players? ");
                         int remove = in.nextInt();
-                        bj.removePlayers(remove);
-                        playerCount -= remove;
+                        if(remove >= playerCount) {
+                            System.out.printf("Can't remove that many.%n%n");
+                        } else {
+                            bj.removePlayers(remove);
+                            playerCount -= remove;
+                        }
                         break;
             		case 4:
             			System.out.printf("%nThanks for playing!%n");
+                        options = false;
                         play = false;
-                        break;
-                    default: 
-                        continue;
             	}
             }
         }
     }
-    public static void displayCurrentStandings(){
+    public static void displayCurrentStandings() {
         System.out.printf("%n");
-        for(int i = 0; i < bj.getPlayers().size(); i++){
+        for(int i = 0; i < bj.getPlayers().size(); i++) {
             System.out.printf("%-18s", bj.getPlayer(i).getUsername(), "");     
         }
         System.out.printf("%n");
-        for(int i = 0; i < bj.getPlayers().size(); i++){
+        for(int i = 0; i < bj.getPlayers().size(); i++) {
             System.out.printf("Balance: $%-8d", bj.getPlayer(i).getBalance());     
         }
         System.out.printf("%n");
-        for(int i = 0; i < bj.getPlayers().size(); i++){
+        for(int i = 0; i < bj.getPlayers().size(); i++) {
             System.out.printf("Wins: %-12d", bj.getPlayer(i).getWins());     
         }
         System.out.printf("%n");
-        for(int i = 0; i < bj.getPlayers().size(); i++){
+        for(int i = 0; i < bj.getPlayers().size(); i++) {
             System.out.printf("Loses: %-11d", bj.getGamesPlayed() - bj.getPlayer(i).getWins());     
         }
         System.out.printf("%n");
