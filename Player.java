@@ -1,7 +1,7 @@
 import java.util.*;
 public class Player {
     private ArrayList<Card> hand;
-    private int balance, bet, score, wins;
+    private int balance, bet, score, wins, loses, draws;
     private boolean bust;
     private String username;
     public Player(String playerName) {
@@ -12,6 +12,8 @@ public class Player {
         balance = 1000;
         bust = false;
         wins = 0;
+        loses = 0;
+        draws = 0;
     }
     public Card getCard(int index) {
         return hand.get(index);
@@ -33,7 +35,6 @@ public class Player {
     }
     public String getScoreString() {
         if(score > 21) {
-            bust = true;
             return "BUST";
         } else {
             return String.valueOf(score);
@@ -48,8 +49,14 @@ public class Player {
     public int getWins() {
         return wins;
     }
-    public void increaseWins() {
-        wins++;
+    public int getLoses() {
+        return loses;
+    }
+    public int getDraws() {
+        return draws;
+    }
+    public void setBalance(int newBalance){
+        balance = newBalance;
     }
     public void reset() {
         hand.clear();
@@ -62,11 +69,11 @@ public class Player {
     }
     public void setScore() { // this is actually so mf ugly
         score = 0;
-        for(int i = 0; i < hand.size(); i++){
+        for(int i = 0; i < hand.size(); i++){ //chck initial score
             score += hand.get(i).getValue();
         }
         if(score > 21) {
-            for(int i = 0; i < hand.size(); i++){
+            for(int i = 0; i < hand.size(); i++){ //if 21 demote aces if possible
                 Card a = hand.get(i);
                 if(a.getRank().equals("A")){
                     a.demoteAce();
@@ -74,47 +81,20 @@ public class Player {
             }
         }
         score = 0;
-        for(int i = 0; i < hand.size(); i++){
+        for(int i = 0; i < hand.size(); i++){ // check score again
             score += hand.get(i).getValue();
         }
-    }
-    public void updateBalance(int dealerScore) {
-        if(checkBust()) {
-            if(dealerScore <= 21) {
-                balance -= bet;
-            }
-        } else {
-            if(dealerScore > 21) {
-                balance += bet;
-            } else if (score > dealerScore) {
-                balance += bet;
-            } else {
-                balance -= bet;
-            }
+        if(score > 21){
+            bust = true;
         }
     }
-    //print the player's hand as ascii art xd
-    public void displayHand() { 
-        String border = "+-----+  ";
-        for(int j = 0; j < hand.size(); j++) {
-            System.out.print(border);
+    public void updateStandings(int moneyWon){ //update wins, loses, and draws based on money diff
+        if(moneyWon > 0){ 
+            wins++;
+        } else if(moneyWon < 0){
+            loses++;
+        } else if(moneyWon == 0){
+            draws++;
         }
-        System.out.printf("%n");
-        for(int j = 0; j < hand.size(); j++) {
-            System.out.printf("|%-2s   |  ", hand.get(j).getRank());
-        }
-        System.out.printf("%n");
-        for(int j = 0; j < hand.size(); j++) {
-            System.out.printf("|  %s  |  ", hand.get(j).getSuit());
-        }
-        System.out.printf("%n");
-        for(int j = 0; j < hand.size(); j++) {
-            System.out.printf("|   %2s|  " ,hand.get(j).getRank());
-        }
-        System.out.printf("%n");
-        for(int j = 0; j < hand.size(); j++) {
-            System.out.print(border);
-        }
-        System.out.printf("%n");
     }
 }

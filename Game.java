@@ -1,42 +1,47 @@
 import java.util.*;
 
 public class Game {
-    ArrayList<Player> players;
+    private ArrayList<Player> players;
+    private Deck deck;
+    private Dealer dealer;
     int gamesPlayed;
-	public Game() {
+    
+    public Game() {
 		players = new ArrayList<Player>();
+        deck = new Deck();
+        dealer = new Dealer(); 
         gamesPlayed = 0;
-	}
+    }
+    
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
-	//get player at specific index
-	public Player getPlayer(int index) {
+	public Player getPlayer(int index) {   //get player at specific index
 		return players.get(index);
 	}
     public int getGamesPlayed(){
         return gamesPlayed;
     }
-    public void increaseGamesPlayed(){
+    public void increaseGamesPlayed(){ //increment total games (not in use rn)
         gamesPlayed++;
     }
     //add parameter amount of players 
-	public void addPlayers(int add) {
+	public void addPlayers(int add) { //add new player
         Scanner in = new Scanner(System.in);
         int numOfPlayers = players.size();
         System.out.printf("%n");
-        for(int i = numOfPlayers ; i < numOfPlayers + add; i++) {
+        for(int i = numOfPlayers ; i < numOfPlayers + add; i++) { //adding players
             while(true) {
                 boolean sameName = false;
                 System.out.printf("Player %d's name: ", i + 1);
                 String name = in.next();
-                for(int j = 0; j < players.size(); j++) {
+                for(int j = 0; j < players.size(); j++) { //search if username is already taken
                     if(name.equals(getPlayer(j).getUsername())) {
                         System.out.println("Username is already taken. Try again.");
                         sameName = true;
                     }
                 }
-                if(!sameName) {
+                if(!sameName) { //adds if username did not match an existing username
                     Player p = new Player(name);
                     players.add(p);
                     break;
@@ -45,26 +50,46 @@ public class Game {
         }
         System.out.printf("%n");
 	}
-    //remove parameter amount of players
-	public void removePlayers(int remove) {
+    public void hit(int index) {
+        Card c = deck.draw();
+        players.get(index).hit(c);
+        players.get(index).setScore();
+    }
+    public void dealerTurn() { //automates dealer turn
+        dealer.revealCard(); //remove card back
+        while(dealer.getScore() < 17) { //stands on soft 17
+            dealer.hit(deck.draw()); 
+            dealer.setScore();
+        }
+    }
+    public void clearScreen() { //clears screen
+        System.out.print("\033[H\033[2J");  
+        System.out.flush(); 
+        AsciiArt.printHeader(); //prints header immediately after
+    }
+    public void displayGame() { //main display
+        dealer.displayHand(); //prints dealer
+        displaySidebySide();// prints player hands
+    }
+	public void removePlayers(int remove) {     //remove parameter amount of players
 		Scanner in = new Scanner(System.in);
         System.out.printf("%n");
-        for(int i = 0; i < remove; i++) {
+        for(int i = 0; i < remove; i++) {//repeats for amount of wanted players to remove
             while(true) {
                 int index = 0;
                 boolean dne = true;
-                System.out.print("Player name: ");
+                System.out.print("Player name: "); //prompt for name of player to remove
                 String name = in.next();
-                for(int j = 0; j < players.size(); j++) {
-                    if(players.get(j).getUsername().equals(name)) {
+                for(int j = 0; j < players.size(); j++) { // search for player
+                    if(players.get(j).getUsername().equals(name)) { //get index of player or returns in player does not exist
                         index = j;
                         dne = false;
                     }
                 }
                 if(dne) {
-                    System.out.printf("%s does not exist.%n", name);
+                    System.out.printf("%s does not exist.%n", name); //player not found
                 } else {
-                    players.remove(index);
+                    players.remove(index); //remove player found at the index
                     System.out.printf("%s has been removed.%n", name);
                     break;
                 }
@@ -72,6 +97,74 @@ public class Game {
         }
         System.out.printf("%n");
 	}
+    public void newGame() {
+        for(int i = 0; i < players.size(); i++) { //each player draws 2 cards
+            for(int j = 0; j < 2; j++) {
+                Player p = players.get(i);
+                p.hit(deck.draw()); 
+            }
+        }
+        dealer.hit(deck.draw()); //dealer draws one
+    }
+    public void replay() { //reset everything
+        for(int i = 0; i < players.size(); i++) { //clear hands and bets
+            players.get(i).reset();
+        }
+        dealer.reset(); //clears hand
+        deck.resetDeck(); //new deck and reshuffles
+        newGame(); //initial deal
+    }
+    public void determineWinner(){
+        System.out.printf("Winners:%n");
+        for(int i = 0; i < players.size(); i++){
+            Player p = players.get(i);
+            int moneyWon = 0;
+            if(p.checkBust()){ //player bust = auto lose
+                moneyWon = -1 * p.getBet();
+            } else if(dealer.checkBust()){ //dealer bust = auto win
+                moneyWon = p.getBet();
+            } else if (p.getScore() > dealer.getScore()){ // win pay 1:1
+                moneyWon += p.getBet();
+            } else if (p.getScore() < dealer.getScore()){//lose negative bet
+                moneyWon -= p.getBet();
+            } else if (p.getScore() == dealer.getScore()){// draw
+                moneyWon = 0;
+            }
+            if(moneyWon > 0){
+                System.out.printf("%s", p.getUsername());
+            }
+            if(p.getScore() == 21 && moneyWon > 0){ // blackjacks pays 3:2
+                moneyWon *= 1.5;
+            }
+            p.updateStandings(moneyWon);    
+            p.setBalance(p.getBalance() + moneyWon);
+        }
+        System.out.printf("%n");
+    }
+    public void displayCurrentStandings() { // prints balanace, wins, loses, and draws
+        System.out.printf("Current Standings:%n");
+        for(int i = 0; i < players.size(); i++) { //username
+            System.out.printf("%-18s", players.get(i).getUsername(), "");     
+        }
+        System.out.printf("%n");
+
+        for(int i = 0; i < players.size(); i++) { // balance
+            System.out.printf("Balance: $%-8d", players.get(i).getBalance());     
+        }
+        System.out.printf("%n");
+        for(int i = 0; i < players.size(); i++) { //wins
+            System.out.printf("Wins: %-12d", players.get(i).getWins());     
+        }
+        System.out.printf("%n");
+        for(int i = 0; i < players.size(); i++) { // loses
+            System.out.printf("Loses: %-11d", players.get(i).getLoses());     
+        }
+        System.out.printf("%n");
+        for(int i = 0; i < players.size(); i++) { // draws
+            System.out.printf("Draws: %-11d", players.get(i).getDraws());     
+        }
+        System.out.printf("%n%n");
+    }
     //prints 3 players' hands in a linear fashion
     public void displaySidebySide() {
         String border = "+-----+";

@@ -15,7 +15,7 @@ public class Card {
     public int getValue() {
         return value;
     }
-	public void setValue() {
+	public void setValue() { // assign value to card
 		if(rank.matches("\\d")) { //checks if the rank is a digit
 		    value = Integer.parseInt(rank);
 		} else if(rank.equals("A")) {
@@ -24,7 +24,7 @@ public class Card {
 		    value = 10;
 		}
     }
-    public void demoteAce() {
+    public void demoteAce() { // reduce ace value from 11
         value = 1;
     }
 }

@@ -4,12 +4,13 @@ public class Dealer {
     ArrayList<Card> hand;
     private int score;
     private String username;
-    private boolean hidecard;
+    private boolean hidecard, bust;
     public Dealer() {
         hand = new ArrayList<Card>();
         username = "Dealer";
         score = 0;
         hidecard = true;
+        bust = false;
     }
     public String getUsername(){
         return username;
@@ -17,14 +18,18 @@ public class Dealer {
     public int getScore() {
         return score;
     }
-    public String getScoreString() {
+    public boolean checkBust(){
+        return bust;
+    }
+    public String getScoreString() { //return score to print
         if(score > 21) {
+            bust = true;
             return "BUST";
         } else {
             return String.valueOf(score);
         }
     }
-    public void hit(Card c) {
+    public void hit(Card c) { // add card and update score
         hidecard = true;
         hand.add(c);
         setScore();
@@ -34,11 +39,11 @@ public class Dealer {
     }
     public void setScore(){ // this is actually so mf ugly
         score = 0;
-        for(int i = 0; i < hand.size(); i++){
+        for(int i = 0; i < hand.size(); i++){ //get initial score
             score += hand.get(i).getValue();
         }
         if(score > 21) {
-            for(int i = 0; i < hand.size(); i++){
+            for(int i = 0; i < hand.size(); i++){ //if score if over 21 demote ace if possible
                 Card a = hand.get(i);
                 if(a.getRank().equals("A")){
                     a.demoteAce();
@@ -46,28 +51,28 @@ public class Dealer {
             }
         }
         score = 0;
-        for(int i = 0; i < hand.size(); i++){
+        for(int i = 0; i < hand.size(); i++){ // check score again
             score += hand.get(i).getValue();
         }
     }
-    public void revealCard() {
+    public void revealCard() { //remove cardback
         hidecard = false;
     }
-    public void reset() {
+    public void reset() { //add cardback, clear hand, reset score
         hidecard = true;
         hand.clear();
         score = 0;
     } 
     //print the player's hand as ascii art xd
     public void displayHand() { 
-        System.out.printf("%n%s%n", username);
+        System.out.printf("%s%n", username);
         String border = "+-----+  ";
         String cardback = "+++++++  ";
 
         if(hidecard) {
             System.out.print(border);
         }
-        for(int j = 0; j < hand.size(); j++) {
+        for(int j = 0; j < hand.size(); j++) { // border
              System.out.print(border);
         }
         System.out.print("\n");
@@ -75,7 +80,7 @@ public class Dealer {
         if(hidecard) {
             System.out.print(cardback);
         }
-        for(int j = 0; j < hand.size(); j++) {
+        for(int j = 0; j < hand.size(); j++) { //rank
             System.out.printf("|%-5s|  ", hand.get(j).getRank());
         }
         System.out.print("\n");
@@ -83,7 +88,7 @@ public class Dealer {
         if(hidecard){
             System.out.print(cardback);
         } 
-        for(int j = 0; j < hand.size(); j++) {
+        for(int j = 0; j < hand.size(); j++) { //suit
             System.out.printf("|  %s  |  ", hand.get(j).getSuit());
         }
         System.out.print("\n");
@@ -91,7 +96,7 @@ public class Dealer {
         if(hidecard){
             System.out.print(cardback);
         }
-        for(int j = 0; j < hand.size(); j++) {
+        for(int j = 0; j < hand.size(); j++) { //rank
             System.out.printf("|%5s|  ", hand.get(j).getRank());
         }
         System.out.print("\n");
@@ -99,7 +104,7 @@ public class Dealer {
         if(hidecard){
             System.out.print(border);
         }
-        for(int j = 0; j < hand.size(); j++) {
+        for(int j = 0; j < hand.size(); j++) { // border
             System.out.print(border);
         }
         System.out.printf("%n");
