@@ -20,38 +20,52 @@ public class Game {
 	public Player getPlayer(int index) {
 		return players.get(index);
 	}
-	public void addPlayers(int playerCount) {
+	public void addPlayers(int add) {
         Scanner in = new Scanner(System.in);
-        for(int i = players.size(); i < playerCount; i++) {
-            boolean gettingPlayers = true;
-            while(gettingPlayers) {
+        int numOfPlayers = players.size();
+        for(int i = numOfPlayers ; i < numOfPlayers + add; i++) {
+            boolean running = true;
+            while(running) {
                 boolean sameName = false;
                 System.out.printf("Player %d's name: ", i + 1);
                 String name = in.next();
                 for(int j = 0; j < players.size(); j++) {
                     if(name.equals(getPlayer(j).getUsername())) {
                         System.out.println("Username is already taken. Enter a different one.");
-                        
-                        /*
-                        System.out.print(String.format("\033[%dA",1)); // Move up
-                        System.out.print("\033[2K"); // Erase line content
-                        System.out.print(String.format("\033[%dA",1)); // Move up
-                        System.out.print("\033[2K"); // Erase line content
-                        */   
-
                         sameName = true;
                     }
                 }
                 if(!sameName) {
                     Player p = new Player(name);
                     players.add(p);
-                    gettingPlayers = false;
+                    running = false;
                 }
             }
         }
 	}
-	public void removePlayer(String username) {
-		// players.remove(username); // need to fix
+	public void removePlayers(int playerCount) {
+		Scanner in = new Scanner(System.in);
+        for(int i = 0; i < playerCount; i++) {
+            while(true) {
+                int index = 0;
+                boolean dne = true;
+                System.out.print("Player name: ");
+                String name = in.next();
+                for(int j = 0; j < players.size(); j++) {
+                    if(players.get(j).getUsername().equals(name)) {
+                        index = j;
+                        dne = false;
+                    }
+                }
+                if(dne) {
+                    System.out.printf("%s does not exist.%n", name);
+                } else {
+                    players.remove(index);
+                    System.out.printf("%s has been removed.%n", name);
+                    break;
+                }
+            }
+        }
 	}
     public void displaySidebySide() {
         String border = "+-----+";

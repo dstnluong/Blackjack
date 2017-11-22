@@ -53,6 +53,9 @@ public class Dealer {
     public void revealCard() {
         hidecard = false;
     }
+    public void hideCard() {
+        hidecard = true;
+    }
     public void clearHand() {
         hand.clear();
     } 
