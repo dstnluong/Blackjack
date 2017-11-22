@@ -69,6 +69,21 @@ public class Player {
     public void bet(int amount) {
         bet = amount;
     }
+    public void updateBalance(int dealerScore) {
+        if(checkBust()) {
+            if(dealerScore <= 21) {
+                balance -= bet;
+            }
+        } else {
+            if(dealerScore > 21) {
+                balance += bet;
+            } else if (score > dealerScore) {
+                balance += bet;
+            } else {
+                balance -= bet;
+            }
+        }
+    }
     public void displayHand() { //print the player's hand as ascii art xd
         String border = "+-----+  ";
         for(int j = 0; j < hand.size(); j++) {

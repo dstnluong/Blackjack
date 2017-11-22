@@ -83,6 +83,9 @@ public class Blackjack {
 
         	//winner 
         	determineWinner();
+            for(int i = 0; i < playerCount; i++) {
+                bj.getPlayer(i).updateBalance(dealer.getScore());
+            }
 
             System.out.printf("%n%n");
             //boolean options = true;
@@ -117,17 +120,11 @@ public class Blackjack {
             }
         }
     }
-    public static void displayGame() {
-        clearScreen();
-        AsciiArt.printHeader();
-    	dealer.displayHand();
-    	bj.displaySidebySide();
-    }
-    
+
     public static void newGame() {
         for(int i = 0; i < bj.getPlayers().size(); i++) {
             for(int j = 0; j < 2; j++) {
-            	Player p = bj.getPlayers().get(i);
+                Player p = bj.getPlayers().get(i);
                 p.hit(deck.draw()); 
             }
         }
@@ -135,15 +132,16 @@ public class Blackjack {
         dealer.hit(deck.draw());
         clearScreen();
     }
+    public static void displayGame() {
+        clearScreen();
+        AsciiArt.printHeader();
+    	dealer.displayHand();
+    	bj.displaySidebySide();
+    }
     public static void clearScreen() {
     	System.out.print("\033[H\033[2J");  
     	System.out.flush(); 
     }
-    public static void clrscr() {
-    	for(int i = 0; i <= 56; i++) {
-    		System.out.println();
-    	}
-	}
     public static void hit(int index) {
         Card c = deck.draw();
         bj.getPlayer(index).hit(c);
@@ -181,13 +179,6 @@ public class Blackjack {
         	}
         }
     }
-    /*
-    public static void updateBalance() {
-    	for(int i = 0; i < bj.getPlayers().size(); i++) {
-
-    	}
-    }
-    */
     public static void replay() {
         for(int i = 0; i < bj.getPlayers().size(); i++) {
             bj.getPlayer(i).clearHand();

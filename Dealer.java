@@ -48,7 +48,6 @@ public class Dealer {
         for(int i = 0; i < hand.size(); i++){
             score += hand.get(i).getValue();
         }
-
     }
     public void revealCard() {
         hidecard = false;
