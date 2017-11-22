@@ -27,7 +27,6 @@ public class Blackjack {
                     bj.addPlayers(playerCount);        
 
                     bj.newGame();
-
                     while(play) { 
                         bj.clearScreen();
                         
