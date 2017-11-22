@@ -69,9 +69,11 @@ public class Blackjack {
                                         playerTurn = false;
                     				    break;
                     				case 3: //double down
-                    				    bj.hit(i);
-                    				    p.bet(2 * p.getBet());
-                                        playerTurn = false;
+                                        if(2 * p.getBet() <= p.getBalance()){
+                                            bj.hit(i);
+                    				        p.bet(2 * p.getBet());
+                                            playerTurn = false;
+                                        }
                     				    break;
                     			}
                     		}
