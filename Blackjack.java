@@ -17,13 +17,8 @@ public class Blackjack {
 
         clearScreen();
 
-        try {
-            System.out.printf("Number of players: ");
-            playerCount = in.nextInt();
-        } catch (InputMismatchException e){
-            System.out.printf("Enter a valid number.");
-        }
-        System.out.printf("%n");
+        System.out.printf("Number of players: ");
+        playerCount = in.nextInt();
         bj.addPlayers(playerCount);        
 
         newGame();
@@ -77,8 +72,6 @@ public class Blackjack {
         				    playerTurn = false;
         				    displayGame();
         				    break;
-                        default:
-                            break;
         			}
         		}
         		System.out.printf("%n");
@@ -95,11 +88,19 @@ public class Blackjack {
             for(int i = 0; i < playerCount; i++) {
                 bj.getPlayer(i).updateBalance(dealer.getScore());
                 if(bj.getPlayer(i).getBalance() <= 0) {    //if balance == 0, automatically remove player
+                    System.out.printf("%s went bankrupt.%n", bj.getPlayer(i).getUsername());
+                    System.out.printf("%s has been removed.%n", bj.getPlayer(i).getUsername());
                     bj.getPlayers().remove(i);
                     playerCount--;
+                    i--;
                 }
             }
-            displayCurrentStandings();
+            if(playerCount == 0) {
+                System.out.printf("%nThanks for playing!%n");
+                break;
+            } else {
+                displayCurrentStandings();
+            }
 
             System.out.printf("%n%n");
             boolean options = true;
@@ -127,39 +128,22 @@ public class Blackjack {
             		case 3:
             			System.out.print("How many players? ");
                         int remove = in.nextInt();
-                        bj.removePlayers(remove);
-                        playerCount -= remove;
-            			break;
+                        if(remove >= playerCount) {
+                            System.out.printf("Can't remove that many.%n%n");
+                        } else {
+                            bj.removePlayers(remove);
+                            playerCount -= remove;
+                        }
+                        break;
             		case 4:
             			System.out.printf("%nThanks for playing!%n");
+                        options = false;
                         play = false;
-                        break;
-                    default: 
-                        continue;
             	}
-                break;
             }
         }
     }
-    public static void displayCurrentStandings(){
-        for(int i = 0; i < bj.getPlayers().size(); i++){
-            System.out.printf("%s:%16s", bj.getPlayer(i).getUsername(), "");     
-        }
-        System.out.printf("%n");
-        for(int i = 0; i < bj.getPlayers().size(); i++){
-            System.out.printf("Balance: %-9d", bj.getPlayer(i).getBalance());     
-        }
-        System.out.printf("%n");
-        for(int i = 0; i < bj.getPlayers().size(); i++){
-            System.out.printf("Wins: %-12d", bj.getPlayer(i).getWins());     
-        }
-        System.out.printf("%n");
-        for(int i = 0; i < bj.getPlayers().size(); i++){
-            System.out.printf("Loses: %-11d", bj.getGamesPlayed() - bj.getPlayer(i).getWins());     
-        }
-        System.out.printf("%n");
-
-    }
+    
     public static void newGame() {
         for(int i = 0; i < bj.getPlayers().size(); i++) {
             for(int j = 0; j < 2; j++) {
@@ -172,12 +156,12 @@ public class Blackjack {
     }
     public static void displayGame() {
         clearScreen();
-    	dealer.displayHand();
-    	bj.displaySidebySide();
+        dealer.displayHand();
+        bj.displaySidebySide();
     }
     public static void clearScreen() {
-    	System.out.print("\033[H\033[2J");  
-    	System.out.flush(); 
+        System.out.print("\033[H\033[2J");  
+        System.out.flush(); 
         AsciiArt.printHeader();
     }
     public static void hit(int index) {
@@ -194,34 +178,53 @@ public class Blackjack {
     public static void determineWinner() {
         int highscore = 0;
         if(dealer.getScore() <= 21) {
-    	   highscore = dealer.getScore();
+           highscore = dealer.getScore();
         }
-    	boolean dealerWin = true;
+        boolean dealerWin = true;
         for(int i = 0; i < bj.getPlayers().size(); i++) {
-        	if(bj.getPlayer(i).getScore() >= highscore && !bj.getPlayer(i).checkBust()) {
-        		highscore = bj.getPlayer(i).getScore();
-        		dealerWin = false;
-        	}
+            if(bj.getPlayer(i).getScore() >= highscore && !bj.getPlayer(i).checkBust()) {
+                highscore = bj.getPlayer(i).getScore();
+                dealerWin = false;
+            }
         }
         System.out.println("WINNER: ");
         if(dealerWin) {
-        	System.out.println("Dealer");
+            System.out.println("Dealer");
         } else {
-        	if(dealer.getScore() == highscore) {
-        		System.out.println("Dealer");
-        	}
-        	for(int i = 0; i < bj.getPlayers().size(); i++) {
+            if(dealer.getScore() == highscore) {
+                System.out.println("Dealer");
+            }
+            for(int i = 0; i < bj.getPlayers().size(); i++) {
                 Player p = bj.getPlayer(i);
-        		if(p.getScore() == highscore) {
-        			System.out.println(p.getUsername());
+                if(p.getScore() == highscore) {
+                    System.out.println(p.getUsername());
                     p.increaseWins(); 
                 } 
-        	}
+            }
         }
         for(int i = 0; i < bj.getPlayers().size(); i++) {
             bj.getPlayer(i).updateBalance(dealer.getScore());
         }
         bj.increaseGamesPlayed();
+        System.out.printf("%n");
+    }
+    public static void displayCurrentStandings() {
+        System.out.printf("%n");
+        for(int i = 0; i < bj.getPlayers().size(); i++) {
+            System.out.printf("%-18s", bj.getPlayer(i).getUsername(), "");     
+        }
+        System.out.printf("%n");
+        for(int i = 0; i < bj.getPlayers().size(); i++) {
+            System.out.printf("Balance: $%-8d", bj.getPlayer(i).getBalance());     
+        }
+        System.out.printf("%n");
+        for(int i = 0; i < bj.getPlayers().size(); i++) {
+            System.out.printf("Wins: %-12d", bj.getPlayer(i).getWins());     
+        }
+        System.out.printf("%n");
+        for(int i = 0; i < bj.getPlayers().size(); i++) {
+            System.out.printf("Loses: %-11d", bj.getGamesPlayed() - bj.getPlayer(i).getWins());     
+        }
         System.out.printf("%n");
     }
     public static void replay() {

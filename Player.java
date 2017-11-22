@@ -13,26 +13,23 @@ public class Player {
         bust = false;
         wins = 0;
     }
-    public void increaseWins(){
-        wins++;
-    }
-    public int getWins(){
-        return wins;
+    public Card getCard(int index) {
+        return hand.get(index);
     }
     public String getUsername() {
         return username;
     }
-    public boolean checkBust() {
-        return bust;
-    }
-    public int getScore() {
-        return score;
+    public void bet(int amount) {
+        bet = amount;
     }
     public int getBet() {
         return bet;
     }
     public int getBalance() {
         return balance;
+    }
+    public int getScore() {
+        return score;
     }
     public String getScoreString() {
         if(score > 21) {
@@ -42,11 +39,17 @@ public class Player {
             return String.valueOf(score);
         }
     }
-    public Card getCard(int index) {
-        return hand.get(index);
-    }
     public int getHandSize() {
         return hand.size();
+    }
+    public boolean checkBust() {
+        return bust;
+    }
+    public int getWins() {
+        return wins;
+    }
+    public void increaseWins() {
+        wins++;
     }
     public void reset() {
         hand.clear();
@@ -75,9 +78,6 @@ public class Player {
             score += hand.get(i).getValue();
         }
     }
-    public void bet(int amount) {
-        bet = amount;
-    }
     public void updateBalance(int dealerScore) {
         if(checkBust()) {
             if(dealerScore <= 21) {
@@ -93,7 +93,8 @@ public class Player {
             }
         }
     }
-    public void displayHand() { //print the player's hand as ascii art xd
+    //print the player's hand as ascii art xd
+    public void displayHand() { 
         String border = "+-----+  ";
         for(int j = 0; j < hand.size(); j++) {
             System.out.print(border);

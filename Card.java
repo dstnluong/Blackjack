@@ -12,8 +12,8 @@ public class Card {
 	public String getSuit() {
 		return suit;
 	}
-    public void demoteAce() {
-        value = 1;
+    public int getValue() {
+        return value;
     }
 	public void setValue() {
 		if(rank.matches("\\d")) { //checks if the rank is a digit
@@ -24,7 +24,7 @@ public class Card {
 		    value = 10;
 		}
     }
-    public int getValue() {
-        return value;
+    public void demoteAce() {
+        value = 1;
     }
 }

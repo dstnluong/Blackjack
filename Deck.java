@@ -23,12 +23,12 @@ public class Deck {
     public void shuffle() {
     	Collections.shuffle(deck);
     }
-    public void incrementDrawCounter() {
-        drawCounter++;
-    }
     public Card draw() {
         incrementDrawCounter();
         return deck.get(drawCounter);
+    }
+    public void incrementDrawCounter() {
+        drawCounter++;
     }
     public void resetDeck() {
         drawCounter = -1;
