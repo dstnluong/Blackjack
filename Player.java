@@ -16,12 +16,6 @@ public class Player {
     public void increaseWins(){
         wins++;
     }
-    public void betWin(){
-        balance += bet;
-    }
-    public void betLose(){
-        balance -= bet;
-    }
     public int getWins(){
         return wins;
     }
@@ -54,8 +48,10 @@ public class Player {
     public int getHandSize() {
         return hand.size();
     }
-    public void clearHand() {
+    public void reset() {
         hand.clear();
+        bet = 0;
+        score = 0;
     }
     public void hit(Card c) {
         hand.add(c);

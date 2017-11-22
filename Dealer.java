@@ -28,6 +28,7 @@ public class Dealer {
         return score;
     }
     public void hit(Card c) {
+        hidecard = true;
         hand.add(c);
         setScore();
     }
@@ -52,11 +53,10 @@ public class Dealer {
     public void revealCard() {
         hidecard = false;
     }
-    public void hideCard() {
+    public void reset() {
         hidecard = true;
-    }
-    public void clearHand() {
         hand.clear();
+        score = 0;
     } 
     public void displayHand() { //print the player's hand as ascii art xd
         System.out.printf("%n%s%n", username);
