@@ -14,6 +14,9 @@ public class Dealer {
     public String getUsername(){
         return username;
     }
+    public int getScore() {
+        return score;
+    }
     public String getScoreString() {
         if(score > 21) {
             return "BUST";
@@ -21,16 +24,13 @@ public class Dealer {
             return String.valueOf(score);
         }
     }
-    public int getHandSize(){
-        return hand.size();
-    }
-    public int getScore() {
-        return score;
-    }
     public void hit(Card c) {
         hidecard = true;
         hand.add(c);
         setScore();
+    }
+    public int getHandSize() {
+        return hand.size();
     }
     public void setScore(){ // this is actually so mf ugly
         score = 0;
@@ -58,7 +58,8 @@ public class Dealer {
         hand.clear();
         score = 0;
     } 
-    public void displayHand() { //print the player's hand as ascii art xd
+    //print the player's hand as ascii art xd
+    public void displayHand() { 
         System.out.printf("%n%s%n", username);
         String border = "+-----+  ";
         String cardback = "+++++++  ";

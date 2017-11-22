@@ -7,12 +7,6 @@ public class Game {
 		players = new ArrayList<Player>();
         gamesPlayed = 0;
 	}
-    public void increaseGamesPlayed(){
-        gamesPlayed++;
-    }
-    public int getGamesPlayed(){
-        return gamesPlayed;
-    }
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
@@ -20,6 +14,13 @@ public class Game {
 	public Player getPlayer(int index) {
 		return players.get(index);
 	}
+    public int getGamesPlayed(){
+        return gamesPlayed;
+    }
+    public void increaseGamesPlayed(){
+        gamesPlayed++;
+    }
+    //add parameter amount of players 
 	public void addPlayers(int add) {
         Scanner in = new Scanner(System.in);
         int numOfPlayers = players.size();
@@ -44,10 +45,11 @@ public class Game {
         }
         System.out.printf("%n");
 	}
-	public void removePlayers(int playerCount) {
+    //remove parameter amount of players
+	public void removePlayers(int remove) {
 		Scanner in = new Scanner(System.in);
         System.out.printf("%n");
-        for(int i = 0; i < playerCount; i++) {
+        for(int i = 0; i < remove; i++) {
             while(true) {
                 int index = 0;
                 boolean dne = true;
@@ -70,6 +72,7 @@ public class Game {
         }
         System.out.printf("%n");
 	}
+    //prints 3 players' hands in a linear fashion
     public void displaySidebySide() {
         String border = "+-----+";
         int playersperline = 3;

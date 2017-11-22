@@ -137,6 +137,71 @@ public class Blackjack {
             }
         }
     }
+    
+    public static void newGame() {
+        for(int i = 0; i < bj.getPlayers().size(); i++) {
+            for(int j = 0; j < 2; j++) {
+                Player p = bj.getPlayers().get(i);
+                p.hit(deck.draw()); 
+            }
+        }
+        dealer.reset();
+        dealer.hit(deck.draw());
+    }
+    public static void displayGame() {
+        clearScreen();
+        dealer.displayHand();
+        bj.displaySidebySide();
+    }
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");  
+        System.out.flush(); 
+        AsciiArt.printHeader();
+    }
+    public static void hit(int index) {
+        Card c = deck.draw();
+        bj.getPlayer(index).hit(c);
+        bj.getPlayer(index).setScore();
+    } 
+    public static void dealerTurn() {
+        while(dealer.getScore() < 17) {
+            dealer.hit(deck.draw());
+            dealer.setScore();
+        }
+    }
+    public static void determineWinner() {
+        int highscore = 0;
+        if(dealer.getScore() <= 21) {
+           highscore = dealer.getScore();
+        }
+        boolean dealerWin = true;
+        for(int i = 0; i < bj.getPlayers().size(); i++) {
+            if(bj.getPlayer(i).getScore() >= highscore && !bj.getPlayer(i).checkBust()) {
+                highscore = bj.getPlayer(i).getScore();
+                dealerWin = false;
+            }
+        }
+        System.out.println("WINNER: ");
+        if(dealerWin) {
+            System.out.println("Dealer");
+        } else {
+            if(dealer.getScore() == highscore) {
+                System.out.println("Dealer");
+            }
+            for(int i = 0; i < bj.getPlayers().size(); i++) {
+                Player p = bj.getPlayer(i);
+                if(p.getScore() == highscore) {
+                    System.out.println(p.getUsername());
+                    p.increaseWins(); 
+                } 
+            }
+        }
+        for(int i = 0; i < bj.getPlayers().size(); i++) {
+            bj.getPlayer(i).updateBalance(dealer.getScore());
+        }
+        bj.increaseGamesPlayed();
+        System.out.printf("%n");
+    }
     public static void displayCurrentStandings() {
         System.out.printf("%n");
         for(int i = 0; i < bj.getPlayers().size(); i++) {
@@ -154,70 +219,6 @@ public class Blackjack {
         for(int i = 0; i < bj.getPlayers().size(); i++) {
             System.out.printf("Loses: %-11d", bj.getGamesPlayed() - bj.getPlayer(i).getWins());     
         }
-        System.out.printf("%n");
-    }
-    public static void newGame() {
-        for(int i = 0; i < bj.getPlayers().size(); i++) {
-            for(int j = 0; j < 2; j++) {
-                Player p = bj.getPlayers().get(i);
-                p.hit(deck.draw()); 
-            }
-        }
-        dealer.reset();
-        dealer.hit(deck.draw());
-    }
-    public static void displayGame() {
-        clearScreen();
-    	dealer.displayHand();
-    	bj.displaySidebySide();
-    }
-    public static void clearScreen() {
-    	System.out.print("\033[H\033[2J");  
-    	System.out.flush(); 
-        AsciiArt.printHeader();
-    }
-    public static void hit(int index) {
-        Card c = deck.draw();
-        bj.getPlayer(index).hit(c);
-        bj.getPlayer(index).setScore();
-    } 
-    public static void dealerTurn() {
-        while(dealer.getScore() < 17) {
-            dealer.hit(deck.draw());
-            dealer.setScore();
-        }
-    }
-    public static void determineWinner() {
-        int highscore = 0;
-        if(dealer.getScore() <= 21) {
-    	   highscore = dealer.getScore();
-        }
-    	boolean dealerWin = true;
-        for(int i = 0; i < bj.getPlayers().size(); i++) {
-        	if(bj.getPlayer(i).getScore() >= highscore && !bj.getPlayer(i).checkBust()) {
-        		highscore = bj.getPlayer(i).getScore();
-        		dealerWin = false;
-        	}
-        }
-        System.out.println("WINNER: ");
-        if(dealerWin) {
-        	System.out.println("Dealer");
-        } else {
-        	if(dealer.getScore() == highscore) {
-        		System.out.println("Dealer");
-        	}
-        	for(int i = 0; i < bj.getPlayers().size(); i++) {
-                Player p = bj.getPlayer(i);
-        		if(p.getScore() == highscore) {
-        			System.out.println(p.getUsername());
-                    p.increaseWins(); 
-                } 
-        	}
-        }
-        for(int i = 0; i < bj.getPlayers().size(); i++) {
-            bj.getPlayer(i).updateBalance(dealer.getScore());
-        }
-        bj.increaseGamesPlayed();
         System.out.printf("%n");
     }
     public static void replay() {
