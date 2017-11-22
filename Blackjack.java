@@ -85,6 +85,10 @@ public class Blackjack {
         	determineWinner();
             for(int i = 0; i < playerCount; i++) {
                 bj.getPlayer(i).updateBalance(dealer.getScore());
+                if(bj.getPlayer(i).getBalance() <= 0) {
+                    bj.getPlayers().remove(i);
+                    playerCount--;
+                }
             }
 
             System.out.printf("%n%n");
@@ -102,12 +106,14 @@ public class Blackjack {
             		case 2:
             			System.out.print("How many players? ");
                         int add = in.nextInt();
-            			bj.addPlayers(playerCount + add, playerCount);
+                        bj.addPlayers(playerCount + add, playerCount);
+                        playerCount += add;
                         break;
             		case 3:
             			System.out.print("How many players? ");
                         int remove = in.nextInt();
                         bj.removePlayers(remove);
+                        playerCount -= remove;
             			break;
             		case 4:
             			System.out.printf("%nThanks for playing!%n");
