@@ -17,7 +17,6 @@ public class Blackjack {
 
         System.out.printf("Number of players: ");
         int playerCount = in.nextInt();
-        System.out.printf("%n");
         bj.addPlayers(playerCount);        
 
         newGame();
@@ -89,8 +88,11 @@ public class Blackjack {
             for(int i = 0; i < playerCount; i++) {
                 bj.getPlayer(i).updateBalance(dealer.getScore());
                 if(bj.getPlayer(i).getBalance() <= 0) {    //if balance == 0, automatically remove player
+                    System.out.printf("%s went bankrupt.%n", bj.getPlayer(i).getUsername());
+                    System.out.printf("%s has been removed.%n", bj.getPlayer(i).getUsername());
                     bj.getPlayers().remove(i);
                     playerCount--;
+                    i--;
                 }
             }
             displayCurrentStandings();
@@ -119,7 +121,7 @@ public class Blackjack {
                         int remove = in.nextInt();
                         bj.removePlayers(remove);
                         playerCount -= remove;
-            			break;
+                        break;
             		case 4:
             			System.out.printf("%nThanks for playing!%n");
                         play = false;
@@ -127,17 +129,17 @@ public class Blackjack {
                     default: 
                         continue;
             	}
-                break;
             }
         }
     }
     public static void displayCurrentStandings(){
+        System.out.printf("%n");
         for(int i = 0; i < bj.getPlayers().size(); i++){
-            System.out.printf("%s:%16s", bj.getPlayer(i).getUsername(), "");     
+            System.out.printf("%-18s", bj.getPlayer(i).getUsername(), "");     
         }
         System.out.printf("%n");
         for(int i = 0; i < bj.getPlayers().size(); i++){
-            System.out.printf("Balance: %-9d", bj.getPlayer(i).getBalance());     
+            System.out.printf("Balance: $%-8d", bj.getPlayer(i).getBalance());     
         }
         System.out.printf("%n");
         for(int i = 0; i < bj.getPlayers().size(); i++){
@@ -148,7 +150,6 @@ public class Blackjack {
             System.out.printf("Loses: %-11d", bj.getGamesPlayed() - bj.getPlayer(i).getWins());     
         }
         System.out.printf("%n");
-
     }
     public static void newGame() {
         for(int i = 0; i < bj.getPlayers().size(); i++) {

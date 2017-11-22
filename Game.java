@@ -23,28 +23,30 @@ public class Game {
 	public void addPlayers(int add) {
         Scanner in = new Scanner(System.in);
         int numOfPlayers = players.size();
+        System.out.printf("%n");
         for(int i = numOfPlayers ; i < numOfPlayers + add; i++) {
-            boolean running = true;
-            while(running) {
+            while(true) {
                 boolean sameName = false;
                 System.out.printf("Player %d's name: ", i + 1);
                 String name = in.next();
                 for(int j = 0; j < players.size(); j++) {
                     if(name.equals(getPlayer(j).getUsername())) {
-                        System.out.println("Username is already taken. Enter a different one.");
+                        System.out.println("Username is already taken. Try again.");
                         sameName = true;
                     }
                 }
                 if(!sameName) {
                     Player p = new Player(name);
                     players.add(p);
-                    running = false;
+                    break;
                 }
             }
         }
+        System.out.printf("%n");
 	}
 	public void removePlayers(int playerCount) {
 		Scanner in = new Scanner(System.in);
+        System.out.printf("%n");
         for(int i = 0; i < playerCount; i++) {
             while(true) {
                 int index = 0;
@@ -66,6 +68,7 @@ public class Game {
                 }
             }
         }
+        System.out.printf("%n");
 	}
     public void displaySidebySide() {
         String border = "+-----+";
