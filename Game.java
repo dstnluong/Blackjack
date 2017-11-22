@@ -22,9 +22,9 @@ public class Game {
                 for(int j = 0; j < players.size(); j++) {
                     if(name.equals(getPlayer(j).getUsername())) {
                         System.out.println("Username is already taken. Enter a different one.");
-                        try{
+                        try {
                             Thread.sleep(1000);
-                        }catch(InterruptedException ex){
+                        } catch(InterruptedException ex) {
                             Thread.currentThread().interrupt();
                         }
                         System.out.print(String.format("\033[%dA",1)); // Move up
