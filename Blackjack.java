@@ -65,10 +65,12 @@ public class Blackjack {
             				displayGame();
         				    break;
         				case 3:
-        				    hit(i);
-        				    p.bet(2 * p.getBet());
-        				    playerTurn = false;
-        				    displayGame();
+                            if(2 * p.getBet() <= p.getBalance()) {
+        				        hit(i);
+        				        p.bet(2 * p.getBet());
+        				        playerTurn = false;
+        				        displayGame();
+                            }
         				    break;
         			}
         		}
