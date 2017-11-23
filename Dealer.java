@@ -12,13 +12,13 @@ public class Dealer {
         hidecard = true;
         bust = false;
     }
-    public String getUsername(){
+    public String getUsername() {
         return username;
     }
     public int getScore() {
         return score;
     }
-    public boolean checkBust(){
+    public boolean checkBust() {
         return bust;
     }
     public String getScoreString() { //return score to print
@@ -37,21 +37,21 @@ public class Dealer {
     public int getHandSize() {
         return hand.size();
     }
-    public void setScore(){ // this is actually so mf ugly
+    public void setScore() { // this is actually so mf ugly
         score = 0;
-        for(int i = 0; i < hand.size(); i++){ //get initial score
+        for(int i = 0; i < hand.size(); i++) { //get initial score
             score += hand.get(i).getValue();
         }
         if(score > 21) {
-            for(int i = 0; i < hand.size(); i++){ //if score if over 21 demote ace if possible
+            for(int i = 0; i < hand.size(); i++) { //if score if over 21 demote ace if possible
                 Card a = hand.get(i);
-                if(a.getRank().equals("A")){
+                if(a.getRank().equals("A")) {
                     a.demoteAce();
                 }
             }
         }
         score = 0;
-        for(int i = 0; i < hand.size(); i++){ // check score again
+        for(int i = 0; i < hand.size(); i++) { // check score again
             score += hand.get(i).getValue();
         }
     }

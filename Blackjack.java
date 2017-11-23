@@ -18,8 +18,8 @@ public class Blackjack {
 
         int choice = in.nextInt();
         boolean quit = true;
-        while(quit){    
-            switch(choice){
+        while(quit) {    
+            switch(choice) {
                 case 1: 
                     bj.clearScreen();
                     System.out.printf("Number of players: "); //prompt for players
@@ -34,7 +34,8 @@ public class Blackjack {
                         System.out.printf("Betting Phase%n%n"); //place bets
                     	for(int i = 0; i < playerCount; i++) {
                     		Player p = bj.getPlayer(i);
-                    		System.out.printf("%s's current balance: $%d%n", p.getUsername(), p.getBalance()); //show balances
+                            //show balances
+                            System.out.printf("%s's current balance: $%d%n", p.getUsername(), p.getBalance()); 
                     		while(true) {
                     			System.out.print("Bet: $");
                     			int bet = Math.abs(in.nextInt());
@@ -69,12 +70,14 @@ public class Blackjack {
                                         playerTurn = false;
                     				    break;
                     				case 3: //double down
-                                        if(2 * p.getBet() <= p.getBalance()){
+                                        if(2 * p.getBet() <= p.getBalance()) {
                                             bj.hit(i);
                     				        p.bet(2 * p.getBet());
                                             playerTurn = false;
                                         }
                     				    break;
+                                    default:
+                                        continue;
                     			}
                     		}
                     		System.out.printf("%n");
@@ -90,7 +93,7 @@ public class Blackjack {
                     	bj.determineWinner(); //update standings and pay bets
                         for(int i = 0; i < playerCount; i++) { //remove players with no money
                             if(bj.getPlayer(i).getBalance() <= 0) {    
-                                System.out.printf("%s went bankrupt.%n", bj.getPlayer(i).getUsername());
+                                System.out.printf("%n%s went bankrupt.%n", bj.getPlayer(i).getUsername());
                                 System.out.printf("%s has been removed.%n", bj.getPlayer(i).getUsername());
                                 bj.getPlayers().remove(i);
                                 playerCount--;
@@ -144,13 +147,19 @@ public class Blackjack {
                                     play = false;
                                     quit = false;
                                     break;
+                                default:
+                                    continue;
                                 }
                         	}
                         }
                     break;
                 case 2:
-                    System.out.printf("Come back soon!%n");
+                    System.out.printf("%nCome back soon!%n");
                     quit = false;
+                    break;
+                default: 
+                    quit = false;
+                    break;
             }        
         }
     }

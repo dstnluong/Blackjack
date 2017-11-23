@@ -19,10 +19,10 @@ public class Game {
 	public Player getPlayer(int index) {   //get player at specific index
 		return players.get(index);
 	}
-    public int getGamesPlayed(){
+    public int getGamesPlayed() {
         return gamesPlayed;
     }
-    public void increaseGamesPlayed(){ //increment total games (not in use rn)
+    public void increaseGamesPlayed() { //increment total games (not in use rn)
         gamesPlayed++;
     }
     //add parameter amount of players 
@@ -114,26 +114,26 @@ public class Game {
         deck.resetDeck(); //new deck and reshuffles
         newGame(); //initial deal
     }
-    public void determineWinner(){
+    public void determineWinner() {
         System.out.printf("Winners:%n");
-        for(int i = 0; i < players.size(); i++){
+        for(int i = 0; i < players.size(); i++) {
             Player p = players.get(i);
             int moneyWon = 0;
-            if(p.checkBust()){ //player bust = auto lose
+            if(p.checkBust()) { //player bust = auto lose
                 moneyWon = -1 * p.getBet();
-            } else if(dealer.checkBust()){ //dealer bust = auto win
+            } else if(dealer.checkBust()) { //dealer bust = auto win
                 moneyWon = p.getBet();
-            } else if (p.getScore() > dealer.getScore()){ // win pay 1:1
+            } else if (p.getScore() > dealer.getScore()) { // win pay 1:1
                 moneyWon += p.getBet();
-            } else if (p.getScore() < dealer.getScore()){//lose negative bet
+            } else if (p.getScore() < dealer.getScore()) { //lose negative bet
                 moneyWon -= p.getBet();
-            } else if (p.getScore() == dealer.getScore()){// draw
+            } else if (p.getScore() == dealer.getScore()) { // draw
                 moneyWon = 0;
             }
-            if(moneyWon > 0){
-                System.out.printf("%s", p.getUsername());
+            if(moneyWon > 0) {
+                System.out.printf("%s ", p.getUsername());
             }
-            if(p.getScore() == 21 && moneyWon > 0){ // blackjacks pays 3:2
+            if(p.getScore() == 21 && moneyWon > 0) { // blackjacks pays 3:2
                 moneyWon *= 1.5;
             }
             p.updateStandings(moneyWon);    
@@ -142,7 +142,7 @@ public class Game {
         System.out.printf("%n");
     }
     public void displayCurrentStandings() { // prints balanace, wins, loses, and draws
-        System.out.printf("Current Standings:%n");
+        System.out.printf("%nCurrent Standings:%n");
         for(int i = 0; i < players.size(); i++) { //username
             System.out.printf("%-18s", players.get(i).getUsername(), "");     
         }

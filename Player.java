@@ -55,7 +55,7 @@ public class Player {
     public int getDraws() {
         return draws;
     }
-    public void setBalance(int newBalance){
+    public void setBalance(int newBalance) {
         balance = newBalance;
     }
     public void reset() {
@@ -70,31 +70,31 @@ public class Player {
     }
     public void setScore() { // this is actually so mf ugly
         score = 0;
-        for(int i = 0; i < hand.size(); i++){ //chck initial score
+        for(int i = 0; i < hand.size(); i++) { //chck initial score
             score += hand.get(i).getValue();
         }
         if(score > 21) {
-            for(int i = 0; i < hand.size(); i++){ //if 21 demote aces if possible
+            for(int i = 0; i < hand.size(); i++) { //if 21 demote aces if possible
                 Card a = hand.get(i);
-                if(a.getRank().equals("A")){
+                if(a.getRank().equals("A")) {
                     a.demoteAce();
                 }
             }
         }
         score = 0;
-        for(int i = 0; i < hand.size(); i++){ // check score again
+        for(int i = 0; i < hand.size(); i++) { // check score again
             score += hand.get(i).getValue();
         }
-        if(score > 21){
+        if(score > 21) {
             bust = true;
         }
     }
-    public void updateStandings(int moneyWon){ //update wins, loses, and draws based on money diff
-        if(moneyWon > 0){ 
+    public void updateStandings(int moneyWon) { //update wins, loses, and draws based on money diff
+        if(moneyWon > 0) { 
             wins++;
-        } else if(moneyWon < 0){
+        } else if(moneyWon < 0) {
             loses++;
-        } else if(moneyWon == 0){
+        } else if(moneyWon == 0) {
             draws++;
         }
     }
