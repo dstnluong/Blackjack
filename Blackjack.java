@@ -7,8 +7,6 @@ public class Blackjack {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         bj = new Game();
-
-        int playerCount = 0;
         boolean play = true;
 
         bj.clearScreen();
@@ -23,8 +21,7 @@ public class Blackjack {
                 case 1: 
                     bj.clearScreen();
                     System.out.printf("Number of players: "); //prompt for players
-                    playerCount = in.nextInt();
-                    bj.addPlayers(playerCount);        
+                    bj.addPlayers(in.nextInt());        
 
                     bj.newGame();
                     while(play) { 
@@ -91,7 +88,7 @@ public class Blackjack {
                     	//winner 
                     	bj.determineWinner(); //update standings and pay bets
                         bj.removeBankrupt();
-                        if(playerCount == 0) {
+                        if(bj.getSize() == 0) {
                             System.out.printf("%nThanks for playing!%n");
                             play = false;
                             quit = false;
@@ -129,7 +126,7 @@ public class Blackjack {
                         		case 3: //adding players
                         			System.out.print("How many players to remove? ");
                                     int remove = in.nextInt();
-                                    if(remove >= playerCount) { //prevents from removing too many
+                                    if(remove >= bj.getSize()) { //prevents from removing too many
                                         System.out.printf("Can't remove that many.%n%n");
                                     } else {
                                         bj.removePlayers(remove);
