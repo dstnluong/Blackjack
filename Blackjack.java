@@ -24,6 +24,7 @@ public class Blackjack {
                     int playerCount = in.nextInt();
                     if(playerCount > 0) {
                         bj.addPlayers(playerCount);
+                        play = true;
                     } else {
                         System.out.printf("Need more players.%n%n");
                         play = false;

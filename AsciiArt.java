@@ -28,7 +28,7 @@ public class AsciiArt{
         System.out.println("                      |__/                          "); 
         */ 
     
-        System.out.println("======by Andrew Tran and Dustin Luong=======");
+        System.out.println("=======by Andrew Tran and Dustin Luong=======");
         System.out.printf("%n");
     }
 }
