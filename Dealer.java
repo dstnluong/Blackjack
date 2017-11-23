@@ -30,7 +30,6 @@ public class Dealer {
         }
     }
     public void hit(Card c) { // add card and update score
-        hidecard = true;
         hand.add(c);
         setScore();
     }
@@ -86,7 +85,7 @@ public class Dealer {
         }
         System.out.print("\n");
 
-        if(hidecard){
+        if(hidecard) {
             System.out.print(cardback);
         } 
         for(int j = 0; j < hand.size(); j++) { //suit
@@ -94,7 +93,7 @@ public class Dealer {
         }
         System.out.print("\n");
 
-        if(hidecard){
+        if(hidecard) {
             System.out.print(cardback);
         }
         for(int j = 0; j < hand.size(); j++) { //rank
@@ -102,7 +101,7 @@ public class Dealer {
         }
         System.out.print("\n");
 
-        if(hidecard){
+        if(hidecard) {
             System.out.print(border);
         }
         for(int j = 0; j < hand.size(); j++) { // border

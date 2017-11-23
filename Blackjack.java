@@ -102,6 +102,8 @@ public class Blackjack {
                         }
                         if(playerCount == 0) {
                             System.out.printf("%nThanks for playing!%n");
+                            play = false;
+                            quit = false;
                             break;
                         } else {
                             bj.displayCurrentStandings();

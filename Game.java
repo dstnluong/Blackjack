@@ -56,11 +56,11 @@ public class Game {
         players.get(index).setScore();
     }
     public void dealerTurn() { //automates dealer turn
-        dealer.revealCard(); //remove card back
         while(dealer.getScore() < 17) { //stands on soft 17
             dealer.hit(deck.draw()); 
             dealer.setScore();
         }
+        dealer.revealCard(); //remove card back
     }
     public void clearScreen() { //clears screen
         System.out.print("\033[H\033[2J");  
