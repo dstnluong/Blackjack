@@ -131,7 +131,7 @@ public class Game {
                 moneyWon = 0;
             }
             if(moneyWon > 0) {
-                System.out.printf("%s ", p.getUsername());
+                System.out.printf("%s  ", p.getUsername());
             }
             if(p.getScore() == 21 && moneyWon > 0) { // blackjacks pays 3:2
                 moneyWon *= 1.5;
