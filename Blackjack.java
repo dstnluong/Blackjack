@@ -108,13 +108,8 @@ public class Blackjack {
                         	int input = in.nextInt();
                         	switch(input) {
                         		case 1: //reset game
-                        			if(bj.getSize() > 0){
-                                        options = false;
-                                        bj.replay();
-                                    } else {
-                                        bj.clearScreen();
-                                        bj.displayCurrentStandings();
-                                    }
+                                    bj.replay();
+                                    options = false;
                         			break;
                         		case 2: //removing players
                         			System.out.print("How many players to add? "); 
