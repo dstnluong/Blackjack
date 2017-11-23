@@ -93,32 +93,34 @@ public class Blackjack {
                             play = false;
                             quit = false;
                             break;
-                        } else {
-                            bj.displayCurrentStandings();
                         }
-
                         System.out.printf("%n");
 
                         boolean options = true;
                         while(options) {
                         	System.out.println("[1] Replay");
-                        	System.out.println("[2] Add players");
-                        	System.out.println("[3] Remove players");
-                        	System.out.println("[4] Quit");
+                            System.out.println("[2] View current standings");
+                        	System.out.println("[3] Add players");
+                        	System.out.println("[4] Remove players");
+                        	System.out.println("[5] Quit");
                         	int input = in.nextInt();
                         	switch(input) {
                         		case 1: //reset game
                                     bj.replay();
                                     options = false;
                         			break;
-                        		case 2: //removing players
+                                case 2: // viewing standings
+                                    bj.clearScreen();
+                                    bj.displayCurrentStandings();
+                                    break;
+                        		case 3: //removing players
                         			System.out.print("How many players to add? "); 
                                     int add = in.nextInt();
                                     bj.addPlayers(add);
                                     bj.clearScreen();
                                     bj.displayCurrentStandings();
                                     break;
-                        		case 3: //adding players
+                        		case 4: //adding players
                         			System.out.print("How many players to remove? ");
                                     int remove = in.nextInt();
                                     if(remove >= bj.getSize()) { //prevents from removing too many
@@ -129,7 +131,7 @@ public class Blackjack {
                                         bj.displayCurrentStandings();
                                     }
                                     break;
-                        		case 4: // end game
+                        		case 5: // end game
                         			System.out.printf("%nThanks for playing!%n");
                                     options = false;
                                     play = false;
