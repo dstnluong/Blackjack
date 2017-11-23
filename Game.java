@@ -13,12 +13,21 @@ public class Game {
         gamesPlayed = 0;
     }
     
-	public ArrayList<Player> getPlayers() {
-		return players;
-	}
-	public Player getPlayer(int index) {   //get player at specific index
-		return players.get(index);
-	}
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+    public Player getPlayer(int index) {   //get player at specific index
+        return players.get(index);
+    }
+    public void newGame() {
+        for(int i = 0; i < players.size(); i++) { //each player draws 2 cards
+            for(int j = 0; j < 2; j++) {
+                Player p = players.get(i);
+                p.hit(deck.draw()); 
+            }
+        }
+        dealer.hit(deck.draw()); //dealer draws one
+    }
     public int getGamesPlayed() {
         return gamesPlayed;
     }
@@ -26,7 +35,7 @@ public class Game {
         gamesPlayed++;
     }
     //add parameter amount of players 
-	public void addPlayers(int add) { //add new player
+    public void addPlayers(int add) { //add new player
         Scanner in = new Scanner(System.in);
         int numOfPlayers = players.size();
         System.out.printf("%n");
@@ -49,7 +58,7 @@ public class Game {
             }
         }
         System.out.printf("%n");
-	}
+    }
     public void hit(int index) {
         Card c = deck.draw();
         players.get(index).hit(c);
@@ -71,8 +80,8 @@ public class Game {
         dealer.displayHand(); //prints dealer
         displaySidebySide();// prints player hands
     }
-	public void removePlayers(int remove) {     //remove parameter amount of players
-		Scanner in = new Scanner(System.in);
+    public void removePlayers(int remove) {     //remove parameter amount of players
+        Scanner in = new Scanner(System.in);
         System.out.printf("%n");
         for(int i = 0; i < remove; i++) {//repeats for amount of wanted players to remove
             while(true) {
@@ -96,15 +105,6 @@ public class Game {
             }
         }
         System.out.printf("%n");
-	}
-    public void newGame() {
-        for(int i = 0; i < players.size(); i++) { //each player draws 2 cards
-            for(int j = 0; j < 2; j++) {
-                Player p = players.get(i);
-                p.hit(deck.draw()); 
-            }
-        }
-        dealer.hit(deck.draw()); //dealer draws one
     }
     public void replay() { //reset everything
         for(int i = 0; i < players.size(); i++) { //clear hands and bets
@@ -224,7 +224,11 @@ public class Game {
             System.out.printf("%n");
 
             for(int i = s; i < s + playersperline && i < players.size(); i++) { //bet
-                System.out.printf("Bet: $%-12d", players.get(i).getBet());
+                if(players.get(i).getScore() == 21) {
+                    System.out.printf("Bet: $%-12d", (int)(players.get(i).getBet()*1.5));
+                } else {
+                    System.out.printf("Bet: $%-12d", players.get(i).getBet());
+                }
                 for(int j = 0; j < players.get(i).getHandSize() - 2; j++) {
                     System.out.printf("%9s", " ");
                 }

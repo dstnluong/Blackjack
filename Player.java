@@ -88,9 +88,6 @@ public class Player {
         if(score > 21) {
             bust = true;
         } 
-        if(score == 21) {
-            bet *= 1.5;
-        }
     }
     public void updateStandings(int moneyWon) { //update wins, loses, and draws based on money diff
         if(moneyWon > 0) { 
