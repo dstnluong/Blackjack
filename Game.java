@@ -12,12 +12,11 @@ public class Game {
         dealer = new Dealer(); 
         gamesPlayed = 0;
     }
-    
-    public ArrayList<Player> getPlayers() {
-        return players;
-    }
     public Player getPlayer(int index) {   //get player at specific index
         return players.get(index);
+    }
+    public int getSize(){
+        return players.size();
     }
     public void newGame() {
         for(int i = 0; i < players.size(); i++) { //each player draws 2 cards
@@ -35,6 +34,19 @@ public class Game {
         gamesPlayed++;
     }
     //add parameter amount of players 
+    public void removeBankrupt(){
+        int size = players.size();
+         for(int i = 0; i < size; i++) { //remove players with no money
+            Player p = players.get(i);
+            if(p.getBalance() <= 0) {
+                System.out.printf("%n%s went bankrupt.%n", p.getUsername());
+                System.out.printf("%s has been removed.%n", p.getUsername());
+                players.remove(i);
+                size--;
+                i--;
+            }
+        }
+    }
     public void addPlayers(int add) { //add new player
         Scanner in = new Scanner(System.in);
         int numOfPlayers = players.size();
@@ -123,10 +135,8 @@ public class Game {
                 moneyWon = -1 * p.getBet();
             } else if(dealer.checkBust()) { //dealer bust = auto win
                 moneyWon = p.getBet();
-                System.out.printf("%s", p.getUsername());
             } else if (p.getScore() > dealer.getScore()) { // win pay 1:1
                 moneyWon = p.getBet();
-                System.out.printf("%s", p.getUsername());
             } else if (p.getScore() < dealer.getScore()) { //lose negative bet
                 moneyWon -= p.getBet();
             } else if (p.getScore() == dealer.getScore()) { // draw
@@ -145,27 +155,31 @@ public class Game {
     }
     public void displayCurrentStandings() { // prints balanace, wins, loses, and draws
         System.out.printf("%nCurrent Standings:%n");
-        for(int i = 0; i < players.size(); i++) { //username
-            System.out.printf("%-18s", players.get(i).getUsername(), "");     
-        }
-        System.out.printf("%n");
+        if(players.size() > 0) {
+            for(int i = 0; i < players.size(); i++) { //username
+                System.out.printf("%-18s", players.get(i).getUsername(), "");     
+            }
+            System.out.printf("%n");
 
-        for(int i = 0; i < players.size(); i++) { // balance
-            System.out.printf("Balance: $%-8d", players.get(i).getBalance());     
+            for(int i = 0; i < players.size(); i++) { // balance
+                System.out.printf("Balance: $%-8d", players.get(i).getBalance());     
+            }
+            System.out.printf("%n");
+            for(int i = 0; i < players.size(); i++) { //wins
+                System.out.printf("Wins: %-12d", players.get(i).getWins());     
+            }
+            System.out.printf("%n");
+            for(int i = 0; i < players.size(); i++) { // loses
+                System.out.printf("Loses: %-11d", players.get(i).getLoses());     
+            }
+            System.out.printf("%n");
+            for(int i = 0; i < players.size(); i++) { // draws
+                System.out.printf("Draws: %-11d", players.get(i).getDraws());     
+            }
+            System.out.printf("%n%n");
+        } else {
+            System.out.printf("%nThere are currently no players.%n%n");
         }
-        System.out.printf("%n");
-        for(int i = 0; i < players.size(); i++) { //wins
-            System.out.printf("Wins: %-12d", players.get(i).getWins());     
-        }
-        System.out.printf("%n");
-        for(int i = 0; i < players.size(); i++) { // loses
-            System.out.printf("Loses: %-11d", players.get(i).getLoses());     
-        }
-        System.out.printf("%n");
-        for(int i = 0; i < players.size(); i++) { // draws
-            System.out.printf("Draws: %-11d", players.get(i).getDraws());     
-        }
-        System.out.printf("%n%n");
     }
     //prints 3 players' hands in a linear fashion
     public void displaySidebySide() {
