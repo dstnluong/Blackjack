@@ -8,20 +8,26 @@ public class Blackjack {
         Scanner in = new Scanner(System.in);
         bj = new Game();
         boolean play = true;
+        boolean quit = true;
 
         bj.clearScreen();
+        System.out.printf("Welcome to Blackjack!%n");
 
-        System.out.printf("[1] New Game%n");
-        System.out.printf("[2] Quit%n");
-
-        int choice = in.nextInt();
-        boolean quit = true;
         while(quit) {    
+            System.out.printf("[1] New Game%n");
+            System.out.printf("[2] Quit%n");
+            int choice = in.nextInt();
             switch(choice) {
                 case 1: 
                     bj.clearScreen();
                     System.out.printf("Number of players: "); //prompt for players
-                    bj.addPlayers(in.nextInt());
+                    int playerCount = in.nextInt();
+                    if(playerCount > 0) {
+                        bj.addPlayers(playerCount);
+                    } else {
+                        System.out.printf("Need more players.%n%n");
+                        play = false;
+                    }
 
                     bj.newGame();
                     while(play) { 
@@ -44,8 +50,9 @@ public class Blackjack {
                     			}
                     		} 
                     	}
+                        
+                        //players' turns
                         bj.clearScreen();
-                    	//players' turns
                     	for(int i = 0; i < bj.getSize(); i++) { // player turns
                     		boolean playerTurn = true;
                     		Player p = bj.getPlayer(i);
@@ -148,7 +155,7 @@ public class Blackjack {
                     quit = false;
                     break;
                 default: 
-                    quit = false;
+                    System.out.printf("%nInvalid option. Try again.%n%n");
                     break;
             }        
         }
