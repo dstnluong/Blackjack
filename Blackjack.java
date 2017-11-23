@@ -123,7 +123,6 @@ public class Blackjack {
                         			System.out.print("How many players to add? "); 
                                     int add = in.nextInt();
                                     bj.addPlayers(add);
-                                    playerCount += add;
                                     bj.clearScreen();
                                     bj.displayCurrentStandings();
                                     break;
@@ -134,7 +133,6 @@ public class Blackjack {
                                         System.out.printf("Can't remove that many.%n%n");
                                     } else {
                                         bj.removePlayers(remove);
-                                        playerCount -= remove;
                                         bj.clearScreen();
                                         bj.displayCurrentStandings();
                                     }
