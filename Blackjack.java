@@ -32,7 +32,7 @@ public class Blackjack {
                         
                         //bet
                         System.out.printf("Betting Phase%n%n"); //place bets
-                    	for(int i = 0; i < playerCount; i++) {
+                    	for(int i = 0; i < bj.getSize(); i++) {
                     		Player p = bj.getPlayer(i);
                             //show balances
                             System.out.printf("%s's current balance: $%d%n", p.getUsername(), p.getBalance()); 
@@ -49,7 +49,7 @@ public class Blackjack {
                     	}
                         bj.clearScreen();
                     	//players' turns
-                    	for(int i = 0; i < playerCount; i++) { // player turns
+                    	for(int i = 0; i < bj.getSize(); i++) { // player turns
                     		boolean playerTurn = true;
                     		Player p = bj.getPlayer(i);
                     		while(playerTurn && p.getScore() < 21) { //play turn while not busted
@@ -85,21 +85,12 @@ public class Blackjack {
 
                     	//dealer's turn 
                     	bj.dealerTurn();
-
                         bj.clearScreen();
                     	bj.displayGame();
 
                     	//winner 
                     	bj.determineWinner(); //update standings and pay bets
-                        for(int i = 0; i < playerCount; i++) { //remove players with no money
-                            if(bj.getPlayer(i).getBalance() <= 0) {    
-                                System.out.printf("%n%s went bankrupt.%n", bj.getPlayer(i).getUsername());
-                                System.out.printf("%s has been removed.%n", bj.getPlayer(i).getUsername());
-                                bj.getPlayers().remove(i);
-                                playerCount--;
-                                i--;
-                            }
-                        }
+                        bj.removeBankrupt();
                         if(playerCount == 0) {
                             System.out.printf("%nThanks for playing!%n");
                             play = false;
@@ -120,14 +111,18 @@ public class Blackjack {
                         	int input = in.nextInt();
                         	switch(input) {
                         		case 1: //reset game
-                        			options = false;
-                                    bj.replay();
+                        			if(bj.getSize() > 0){
+                                        options = false;
+                                        bj.replay();
+                                    } else {
+                                        bj.clearScreen();
+                                        bj.displayCurrentStandings();
+                                    }
                         			break;
                         		case 2: //removing players
                         			System.out.print("How many players to add? "); 
                                     int add = in.nextInt();
                                     bj.addPlayers(add);
-                                    playerCount += add;
                                     bj.clearScreen();
                                     bj.displayCurrentStandings();
                                     break;
@@ -138,10 +133,9 @@ public class Blackjack {
                                         System.out.printf("Can't remove that many.%n%n");
                                     } else {
                                         bj.removePlayers(remove);
-                                        playerCount -= remove;
+                                        bj.clearScreen();
+                                        bj.displayCurrentStandings();
                                     }
-                                    bj.clearScreen();
-                                    bj.displayCurrentStandings();
                                     break;
                         		case 4: // end game
                         			System.out.printf("%nThanks for playing!%n");
