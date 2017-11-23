@@ -21,7 +21,7 @@ public class Blackjack {
                 case 1: 
                     bj.clearScreen();
                     System.out.printf("Number of players: "); //prompt for players
-                    bj.addPlayers(in.nextInt());        
+                    bj.addPlayers(in.nextInt());
 
                     bj.newGame();
                     while(play) { 
