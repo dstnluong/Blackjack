@@ -62,6 +62,7 @@ public class Dealer {
         hidecard = true;
         hand.clear();
         score = 0;
+        bust = false;
     } 
     //print the player's hand as ascii art xd
     public void displayHand() { 

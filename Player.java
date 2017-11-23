@@ -62,6 +62,7 @@ public class Player {
         hand.clear();
         bet = 0;
         score = 0;
+        bust = false;
     }
     public void hit(Card c) {
         hand.add(c);
