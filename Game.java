@@ -123,8 +123,10 @@ public class Game {
                 moneyWon = -1 * p.getBet();
             } else if(dealer.checkBust()) { //dealer bust = auto win
                 moneyWon = p.getBet();
+                System.out.printf("%s", p.getUsername());
             } else if (p.getScore() > dealer.getScore()) { // win pay 1:1
-                moneyWon += p.getBet();
+                moneyWon = p.getBet();
+                System.out.printf("%s", p.getUsername());
             } else if (p.getScore() < dealer.getScore()) { //lose negative bet
                 moneyWon -= p.getBet();
             } else if (p.getScore() == dealer.getScore()) { // draw
