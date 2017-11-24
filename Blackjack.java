@@ -14,8 +14,8 @@ public class Blackjack {
         System.out.printf("Welcome to Blackjack!%n");
 
         while(quit) {    
-            System.out.printf("[1] New Game%n");
-            System.out.printf("[2] Quit%n");
+            System.out.printf("[1] NEW GAME%n");
+            System.out.printf("[2] QUIT%n");
             int choice = in.nextInt();
             switch(choice) {
                 case 1: 
