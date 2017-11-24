@@ -20,7 +20,7 @@ public class Blackjack {
             switch(choice) {
                 case 1: 
                     bj.clearScreen();
-                    System.out.printf("Number of players: "); //prompt for players
+                    System.out.printf("How many players? "); //prompt for players
                     int playerCount = in.nextInt();
                     if(playerCount > 0) {
                         bj.addPlayers(playerCount);
@@ -146,7 +146,8 @@ public class Blackjack {
                                     quit = false;
                                     break;
                                 default:
-                                    continue;
+                                    System.out.printf("%nInvalid option. Try again.%n%n");
+                                    break;
                                 }
                         	}
                         }
