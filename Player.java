@@ -76,7 +76,7 @@ public class Player {
         if(score > 21) {
             for(int i = 0; i < hand.size(); i++) { //if 21 demote aces if possible
                 Card a = hand.get(i);
-                if(a.getRank().equals("A")) {
+                if(a.getRank().equals("A") && a.getValue() == 11) {
                     a.demoteAce();
                     break;
                 }
