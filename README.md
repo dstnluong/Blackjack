@@ -15,4 +15,4 @@ Taken from [PAGAT](https://www.pagat.com/banking/blackjack.html):
 6. If the dealer does not bust, then the higher point total between the player and dealer will win.
 7. Winning wagers pay even money, except a winning player blackjack pays 3 to 2.
 
-Best run on macOS.
+Best run on ~~macOS~~ anything but Andrew's shitty laptop.
