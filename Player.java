@@ -78,6 +78,7 @@ public class Player {
                 Card a = hand.get(i);
                 if(a.getRank().equals("A")) {
                     a.demoteAce();
+                    break;
                 }
             }
         }
