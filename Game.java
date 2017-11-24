@@ -154,7 +154,7 @@ public class Game {
         System.out.printf("%n");
     }
     public void displayCurrentStandings() { // prints balanace, wins, loses, and draws
-        System.out.printf("%nCurrent Standings:%n");
+        System.out.printf("%nCurrent Standings%n%n");
         if(players.size() > 0) {
             for(int i = 0; i < players.size(); i++) { //username
                 System.out.printf("%-18s", players.get(i).getUsername(), "");     

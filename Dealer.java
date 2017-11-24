@@ -3,17 +3,12 @@ import java.util.*;
 public class Dealer {
     ArrayList<Card> hand;
     private int score;
-    private String username;
     private boolean hidecard, bust;
     public Dealer() {
         hand = new ArrayList<Card>();
-        username = "Dealer";
         score = 0;
         hidecard = true;
         bust = false;
-    }
-    public String getUsername() {
-        return username;
     }
     public int getScore() {
         return score;
@@ -65,46 +60,46 @@ public class Dealer {
     } 
     //print the player's hand as ascii art xd
     public void displayHand() { 
-        System.out.printf("%s%n", username);
+        System.out.println("Dealer");
         String border = "+-----+  ";
         String cardback = "+++++++  ";
 
+        for(int i = 0; i < hand.size(); i++) { // border
+             System.out.print(border);
+        }
         if(hidecard) {
             System.out.print(border);
         }
-        for(int j = 0; j < hand.size(); j++) { // border
-             System.out.print(border);
-        }
         System.out.print("\n");
 
+        for(int i = 0; i < hand.size(); i++) { //rank
+            System.out.printf("|%-5s|  ", hand.get(i).getRank());
+        }
         if(hidecard) {
             System.out.print(cardback);
         }
-        for(int j = 0; j < hand.size(); j++) { //rank
-            System.out.printf("|%-5s|  ", hand.get(j).getRank());
-        }
         System.out.print("\n");
-
+ 
+        for(int i = 0; i < hand.size(); i++) { //suit
+            System.out.printf("|  %s  |  ", hand.get(i).getSuit());
+        }
         if(hidecard) {
             System.out.print(cardback);
         } 
-        for(int j = 0; j < hand.size(); j++) { //suit
-            System.out.printf("|  %s  |  ", hand.get(j).getSuit());
-        }
         System.out.print("\n");
 
+        for(int i = 0; i < hand.size(); i++) { //rank
+            System.out.printf("|%5s|  ", hand.get(i).getRank());
+        }
         if(hidecard) {
             System.out.print(cardback);
         }
-        for(int j = 0; j < hand.size(); j++) { //rank
-            System.out.printf("|%5s|  ", hand.get(j).getRank());
-        }
         System.out.print("\n");
 
-        if(hidecard) {
+        for(int i = 0; i < hand.size(); i++) { // border
             System.out.print(border);
         }
-        for(int j = 0; j < hand.size(); j++) { // border
+        if(hidecard) {
             System.out.print(border);
         }
         System.out.printf("%n");
