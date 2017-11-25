@@ -1,19 +1,20 @@
-import java.util.*;
+import java.util.ArrayList;
+
 public class Player {
     private ArrayList<Card> hand;
+    private String username;
     private int balance, bet, score, wins, loses, draws;
     private boolean bust;
-    private String username;
     public Player(String playerName) {
         hand = new ArrayList<Card>();
         username = playerName;
-        score = 0;
-        bet = 0;
         balance = 1000;
-        bust = false;
+        bet = 0;
+        score = 0;
         wins = 0;
         loses = 0;
         draws = 0;
+        bust = false;
     }
     public Card getCard(int index) {
         return hand.get(index);
@@ -21,14 +22,14 @@ public class Player {
     public String getUsername() {
         return username;
     }
+    public int getBalance() {
+        return balance;
+    }
     public void bet(int amount) {
         bet = amount;
     }
     public int getBet() {
         return bet;
-    }
-    public int getBalance() {
-        return balance;
     }
     public int getScore() {
         return score;
@@ -68,9 +69,9 @@ public class Player {
         hand.add(c);
         setScore();
     }
-    public void setScore() { // this is actually so mf ugly
+    public void setScore() { 
         score = 0;
-        for(int i = 0; i < hand.size(); i++) { //chck initial score
+        for(int i = 0; i < hand.size(); i++) { //check initial score
             score += hand.get(i).getValue();
         }
         if(score > 21) {
@@ -90,7 +91,8 @@ public class Player {
             bust = true;
         } 
     }
-    public void updateStandings(int moneyWon) { //update wins, loses, and draws based on money diff
+    //update wins, loses, and draws based on money differences
+    public void updateStandings(int moneyWon) { 
         if(moneyWon > 0) { 
             wins++;
         } else if(moneyWon < 0) {

@@ -1,20 +1,22 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Game {
     private ArrayList<Player> players;
     private Deck deck;
     private Dealer dealer;
-    int gamesPlayed;
-    
+    private int gamesPlayed;
     public Game() {
 		players = new ArrayList<Player>();
         deck = new Deck();
         dealer = new Dealer(); 
         gamesPlayed = 0;
     }
-    public Player getPlayer(int index) {   //get player at specific index
+    //get player at specific index
+    public Player getPlayer(int index) {  
         return players.get(index);
     }
+    //returns number of players
     public int getSize(){
         return players.size();
     }
@@ -76,33 +78,37 @@ public class Game {
         players.get(index).hit(c);
         players.get(index).setScore();
     }
-    public void dealerTurn() { //automates dealer turn
+    //automates dealer turn
+    public void dealerTurn() { 
         while(dealer.getScore() < 17) { //stands on soft 17
             dealer.hit(deck.draw()); 
             dealer.setScore();
         }
         dealer.revealCard(); //remove card back
     }
-    public void clearScreen() { //clears screen
+    //clears ide
+    public void clearScreen() { 
         System.out.print("\033[H\033[2J");  
         System.out.flush(); 
         AsciiArt.printHeader(); //prints header immediately after
     }
-    public void displayGame() { //main display
+    //main display
+    public void displayGame() { 
         dealer.displayHand(); //prints dealer
         displaySidebySide();// prints player hands
     }
-    public void removePlayers(int remove) {     //remove parameter amount of players
+    //remove parameter amount of players
+    public void removePlayers(int remove) {
         Scanner in = new Scanner(System.in);
         System.out.printf("%n");
-        for(int i = 0; i < remove; i++) {//repeats for amount of wanted players to remove
+        for(int i = 0; i < remove; i++) { //repeats for amount of wanted players to remove
             while(true) {
                 int index = 0;
                 boolean dne = true;
                 System.out.print("Player name: "); //prompt for name of player to remove
                 String name = in.next();
                 for(int j = 0; j < players.size(); j++) { // search for player
-                    if(players.get(j).getUsername().equals(name)) { //get index of player or returns in player does not exist
+                    if(players.get(j).getUsername().equals(name)) { //get index of player or returns if player dne
                         index = j;
                         dne = false;
                     }
@@ -118,7 +124,8 @@ public class Game {
         }
         System.out.printf("%n");
     }
-    public void replay() { //reset everything
+    //reset the game with a number of players
+    public void replay() { 
         for(int i = 0; i < players.size(); i++) { //clear hands and bets
             players.get(i).reset();
         }
@@ -153,7 +160,8 @@ public class Game {
         }
         System.out.printf("%n");
     }
-    public void displayCurrentStandings() { // prints balanace, wins, loses, and draws
+    // prints balances, wins, loses, and draws
+    public void displayCurrentStandings() { 
         System.out.printf("%nCurrent Standings%n%n");
         if(players.size() > 0) {
             for(int i = 0; i < players.size(); i++) { //username
@@ -181,7 +189,7 @@ public class Game {
             System.out.printf("%nThere are currently no players.%n%n");
         }
     }
-    //prints 3 players' hands in a linear fashion
+    //prints the hands of 3 players in a linear fashion
     public void displaySidebySide() {
         String border = "+-----+";
         int playersperline = 3;

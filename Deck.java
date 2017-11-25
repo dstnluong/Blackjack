@@ -1,17 +1,20 @@
-import java.util.*; 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Deck {
-    ArrayList<Card> deck;
+    private ArrayList<Card> deck;
     private String[] rank, suit;
     private int drawCounter;
     public Deck() {
         deck = new ArrayList<Card>();
         drawCounter = -1;
         fillDeck(); //fill deck
-        shuffle(); //randomize cards
+        shuffle(); //shuffle cards
     }
-    public void fillDeck() { //fill deck with 52 cards
-        rank = new String []{"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
-    	suit = new String []{"\u2665","\u2666","\u2663","\u2660"};
+    //fill deck with 52 cards
+    public void fillDeck() { 
+        rank = new String[] {"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
+    	suit = new String[] {"\u2665","\u2666","\u2663","\u2660"};
         for(int i = 0; i < 13; i++) {
         	for(int j = 0; j < 4; j++) {
         		Card c = new Card(rank[i], suit[j]);
@@ -20,15 +23,17 @@ public class Deck {
         	}
         }
     }
-    public void shuffle() { //randomize deck
+    //randomize card positions in deck
+    public void shuffle() { 
     	Collections.shuffle(deck);
     }
-    public Card draw() { //return a card and move draw index
-        //incrementDrawCounter();
-        drawCounter++;
+    //return a card and move draw index
+    public Card draw() { 
+        drawCounter++; 
         return deck.get(drawCounter);
     }
-    public void resetDeck() { //reset draw counter and reshuffle
+    //reset draw counter and reshuffle
+    public void resetDeck() { 
         drawCounter = -1;
         shuffle();
     }

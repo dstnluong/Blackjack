@@ -1,7 +1,7 @@
-import java.util.*;
+import java.util.ArrayList;
 
 public class Dealer {
-    ArrayList<Card> hand;
+    private ArrayList<Card> hand;
     private int score;
     private boolean hidecard, bust;
     public Dealer() {
@@ -16,7 +16,8 @@ public class Dealer {
     public boolean checkBust() {
         return bust;
     }
-    public String getScoreString() { //return score to print
+    //return score to print
+    public String getScoreString() { 
         if(score > 21) {
             bust = true;
             return "BUST";
@@ -24,14 +25,15 @@ public class Dealer {
             return String.valueOf(score);
         }
     }
-    public void hit(Card c) { // add card and update score
+    // add card and update score
+    public void hit(Card c) { 
         hand.add(c);
         setScore();
     }
     public int getHandSize() {
         return hand.size();
     }
-    public void setScore() { // this is actually so mf ugly
+    public void setScore() { 
         score = 0;
         for(int i = 0; i < hand.size(); i++) { //get initial score
             score += hand.get(i).getValue();
@@ -49,10 +51,12 @@ public class Dealer {
             score += hand.get(i).getValue();
         }
     }
-    public void revealCard() { //remove cardback
+    //remove cardback
+    public void revealCard() { 
         hidecard = false;
     }
-    public void reset() { //add cardback, clear hand, reset score
+    //add cardback, clear hand, reset score
+    public void reset() { 
         hidecard = true;
         hand.clear();
         score = 0;
