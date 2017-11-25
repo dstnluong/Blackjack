@@ -3,12 +3,14 @@ import java.util.Scanner;
 
 public class Game {
     private ArrayList<Player> players;
+    private Scanner in;
     private Deck deck;
     private Dealer dealer;
     private int gamesPlayed;
     
     public Game() {
-		players = new ArrayList<Player>();
+        players = new ArrayList<Player>();
+        in = new Scanner(System.in);
         deck = new Deck();
         dealer = new Dealer(); 
         gamesPlayed = 0;
@@ -51,9 +53,8 @@ public class Game {
         }
     }
     public void addPlayers(int add) { //add new player
-        Scanner in = new Scanner(System.in);
-        int numOfPlayers = players.size();
         System.out.printf("%n");
+        int numOfPlayers = players.size();
         for(int i = numOfPlayers ; i < numOfPlayers + add; i++) { //adding players
             while(true) {
                 boolean sameName = false;
@@ -100,7 +101,6 @@ public class Game {
     }
     //remove parameter amount of players
     public void removePlayers(int remove) {
-        Scanner in = new Scanner(System.in);
         System.out.printf("%n");
         for(int i = 0; i < remove; i++) { //repeats for amount of wanted players to remove
             while(true) {
