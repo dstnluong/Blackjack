@@ -5,6 +5,7 @@ public class Deck {
     private ArrayList<Card> deck;
     private String[] rank, suit;
     private int drawCounter;
+
     public Deck() {
         deck = new ArrayList<Card>();
         drawCounter = -1;
@@ -17,9 +18,9 @@ public class Deck {
     	suit = new String[] {"\u2665","\u2666","\u2663","\u2660"};
         for(int i = 0; i < 13; i++) {
         	for(int j = 0; j < 4; j++) {
-        		Card c = new Card(rank[i], suit[j]);
+                Card c = new Card(rank[i], suit[j]);
                 c.setValue();
-        		deck.add(c);
+                deck.add(c);
         	}
         }
     }

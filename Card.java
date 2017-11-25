@@ -1,6 +1,7 @@
 public class Card {
 	private String rank, suit; 
 	private int value;
+
 	public Card(String cardRank, String cardSuit) {
 		rank = cardRank;		
 		suit = cardSuit;
@@ -12,19 +13,21 @@ public class Card {
 	public String getSuit() {
 		return suit;
 	}
-    public int getValue() {
-        return value;
-    }
-	public void setValue() { // assign value to card
+	public int getValue() {
+		return value;
+	}
+	//assign value to card
+	public void setValue() { 
 		if(rank.matches("\\d")) { //checks if the rank is a digit
 		    value = Integer.parseInt(rank);
 		} else if(rank.equals("A")) {
-		    value = 11;
+			value = 11;
 		} else {
-		    value = 10;
+			value = 10;
 		}
-    }
-    public void demoteAce() { // reduce ace value from 11
-        value = 1;
-    }
+	}
+	//reduce ace value from 11 to 1
+	public void demoteAce() { 
+		value = 1;
+	}
 }

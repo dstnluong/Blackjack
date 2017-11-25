@@ -5,6 +5,7 @@ public class Player {
     private String username;
     private int balance, bet, score, wins, loses, draws;
     private boolean bust;
+    
     public Player(String playerName) {
         hand = new ArrayList<Card>();
         username = playerName;

@@ -1,7 +1,8 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class Blackjack {
     private static Game bj;
+    
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         bj = new Game();
@@ -148,7 +149,7 @@ public class Blackjack {
                                     System.out.printf("%nInvalid option. Try again.%n%n");
                                     break;
                                 }
-                        	}
+                            }
                         }
                     break;
                 case 2:

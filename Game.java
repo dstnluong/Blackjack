@@ -6,6 +6,7 @@ public class Game {
     private Deck deck;
     private Dealer dealer;
     private int gamesPlayed;
+    
     public Game() {
 		players = new ArrayList<Player>();
         deck = new Deck();

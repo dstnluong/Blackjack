@@ -4,6 +4,7 @@ public class Dealer {
     private ArrayList<Card> hand;
     private int score;
     private boolean hidecard, bust;
+    
     public Dealer() {
         hand = new ArrayList<Card>();
         score = 0;
