@@ -38,7 +38,6 @@ public class Game {
     public void increaseGamesPlayed() { //increment total games (not in use rn)
         gamesPlayed++;
     }
-    //add parameter amount of players 
     public void removeBankrupt(){
         int size = players.size();
          for(int i = 0; i < size; i++) { //remove players with no money
@@ -51,29 +50,6 @@ public class Game {
                 i--;
             }
         }
-    }
-    public void addPlayers(int add) { //add new player
-        System.out.printf("%n");
-        int numOfPlayers = players.size();
-        for(int i = numOfPlayers ; i < numOfPlayers + add; i++) { //adding players
-            while(true) {
-                boolean sameName = false;
-                System.out.printf("Player %d's name: ", i + 1);
-                String name = in.next();
-                for(int j = 0; j < players.size(); j++) { //search if username is already taken
-                    if(name.equals(getPlayer(j).getUsername())) {
-                        System.out.println("Username is already taken. Try again.");
-                        sameName = true;
-                    }
-                }
-                if(!sameName) { //adds if username did not match an existing username
-                    Player p = new Player(name);
-                    players.add(p);
-                    break;
-                }
-            }
-        }
-        System.out.printf("%n");
     }
     public void hit(int index) {
         Card c = deck.draw();
@@ -98,6 +74,30 @@ public class Game {
     public void displayGame() { 
         dealer.displayHand(); //prints dealer
         displaySidebySide();// prints player hands
+    }
+    //add parameter amount of players 
+    public void addPlayers(int add) { 
+        System.out.printf("%n");
+        int numOfPlayers = players.size();
+        for(int i = numOfPlayers ; i < numOfPlayers + add; i++) { //adding players
+            while(true) {
+                boolean sameName = false;
+                System.out.printf("Player %d's name: ", i + 1);
+                String name = in.next();
+                for(int j = 0; j < players.size(); j++) { //search if username is already taken
+                    if(name.equals(getPlayer(j).getUsername())) {
+                        System.out.println("Username is already taken. Try again.");
+                        sameName = true;
+                    }
+                }
+                if(!sameName) { //adds if username did not match an existing username
+                    Player p = new Player(name);
+                    players.add(p);
+                    break;
+                }
+            }
+        }
+        System.out.printf("%n");
     }
     //remove parameter amount of players
     public void removePlayers(int remove) {

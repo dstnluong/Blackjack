@@ -20,16 +20,19 @@ public class Blackjack {
                 case 1: 
                     //prompt number of players
                     bj.clearScreen();
-                    System.out.printf("How many players? ");
+                    System.out.printf("How many players? (up to 6) ");
                     int playerCount = in.nextInt();
-                    if(playerCount > 0) {
-                        bj.addPlayers(playerCount);
-                        play = true;
-                    } else {
+                    if(playerCount <= 0) {
                         System.out.printf("Need more players.%n%n");
                         play = false;
+                    } else if (playerCount > 6) {
+                        System.out.printf("Too many players.%n%n");
+                        play = false;
+                    } else {
+                        bj.addPlayers(playerCount);
+                            play = true;
+                        bj.newGame();
                     }
-                    bj.newGame();
 
                     while(play) { 
                         //players place bets
@@ -44,7 +47,9 @@ public class Blackjack {
                     			int bet = Math.abs(in.nextInt());
                     			if(bet > p.getBalance()) { //check if bet amount is allowed
                     				System.out.println("You don't have enough money.");
-                    			} else { //place bet
+                    			} else if(bet <= 0) {
+                                    System.out.println("You need to bet more.");
+                                } else { //place bet
                     				p.bet(bet);
                     				break;
                     			}
@@ -124,9 +129,13 @@ public class Blackjack {
                         		case 3: //removing players
                         			System.out.print("How many players to add? "); 
                                     int add = in.nextInt();
-                                    bj.addPlayers(add);
-                                    bj.clearScreen();
-                                    bj.displayCurrentStandings();
+                                    if(add + bj.getSize() > 6) {
+                                        System.out.printf("%nCan't add that many.%n%n");
+                                    } else {
+                                        bj.addPlayers(add);
+                                        bj.clearScreen();
+                                        bj.displayCurrentStandings();
+                                    }
                                     break;
                         		case 4: //adding players
                         			System.out.print("How many players to remove? ");
