@@ -13,14 +13,14 @@ public class Blackjack {
         System.out.printf("Welcome to Blackjack!%n");
 
         while(quit) {    
-            System.out.printf("[1] NEW GAME%n");
-            System.out.printf("[2] QUIT%n");
+            System.out.println("[1] NEW GAME");
+            System.out.println("[2] QUIT");
             int choice = in.nextInt();
             switch(choice) {
                 case 1: 
                     //prompt number of players
                     bj.clearScreen();
-                    System.out.printf("How many players? (up to 6) ");
+                    System.out.printf("How many players (up to 6)? ");
                     int playerCount = in.nextInt();
                     if(playerCount <= 0) {
                         System.out.printf("Need more players.%n%n");
