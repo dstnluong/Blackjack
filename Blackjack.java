@@ -10,7 +10,7 @@ public class Blackjack {
         boolean quit = true;
 
         bj.clearScreen();
-        System.out.printf("Welcome to Blackjack!%n");
+        System.out.println("Welcome to Blackjack!");
 
         while(quit) {    
             System.out.println("[1] NEW GAME");
@@ -20,7 +20,7 @@ public class Blackjack {
                 case 1: 
                     //prompt number of players
                     bj.clearScreen();
-                    System.out.printf("How many players (up to 6)? ");
+                    System.out.printf("How many players? (up to 6) ");
                     int playerCount = in.nextInt();
                     if(playerCount <= 0) {
                         System.out.printf("Need more players.%n%n");

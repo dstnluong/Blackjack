@@ -135,7 +135,7 @@ public class Game {
         newGame(); //initial deal
     }
     public void determineWinner() {
-        System.out.printf("Winners:%n");
+        System.out.println("Winners:");
         for(int i = 0; i < players.size(); i++) {
             Player p = players.get(i);
             int moneyWon = 0;
