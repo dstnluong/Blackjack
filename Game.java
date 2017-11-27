@@ -31,6 +31,7 @@ public class Game {
             }
         }
         dealer.hit(deck.draw()); //dealer draws one
+        dealer.hit(deck.draw()); //dealer draws one
     }
     public int getGamesPlayed() {
         return gamesPlayed;
@@ -72,6 +73,9 @@ public class Game {
     }
     //main display
     public void displayGame() { 
+        if(dealer21()) {
+            dealer.revealCard();
+        }
         dealer.displayHand(); //prints dealer
         displaySidebySide();// prints player hands
     }

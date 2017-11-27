@@ -31,6 +31,10 @@ public class Dealer {
         hand.add(c);
         setScore();
     }
+    //returns true if dealer has a blackjack
+    public boolean dealer21() {
+        return dealer.getScore() == 21;
+    }
     public int getHandSize() {
         return hand.size();
     }

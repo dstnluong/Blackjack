@@ -57,37 +57,41 @@ public class Blackjack {
                     	}
                         
                         //players' turns
-                        bj.clearScreen();
                     	for(int i = 0; i < bj.getSize(); i++) { //player turns
                     		boolean playerTurn = true;
                     		Player p = bj.getPlayer(i);
                     		while(playerTurn && p.getScore() < 21) { //player's turn while not busted
                                 bj.clearScreen();
-                                bj.displayGame();
-                    			System.out.printf("%s's turn%n", p.getUsername());
-                    			System.out.println("Press [1] to hit.");
-                    			System.out.println("Press [2] to stand.");
-                    			if(2 * p.getBet() <= p.getBalance()) { //allow double down if possible
-                    				System.out.println("Press [3] to double down.");
-                    			}
-                    			int input = in.nextInt();
-                    			switch(input) {
-                    				case 1: //hit
-                    		      		bj.hit(i);
-                    	   		        break;
-                    				case 2: //stand
-                                        playerTurn = false;
-                    				    break;
-                    				case 3: //double down
-                                        if(2 * p.getBet() <= p.getBalance()) {
-                                            bj.hit(i);
-                    				        p.bet(2 * p.getBet());
+                                if(bj.dealer21()) {
+                                    bj.displayGame();
+                                    playerTurn = false;   
+                                } else {
+                                    bj.displayGame();
+                                    System.out.printf("%s's turn%n", p.getUsername());
+                                    System.out.println("Press [1] to hit.");
+                                    System.out.println("Press [2] to stand.");
+                                    if(2 * p.getBet() <= p.getBalance()) { //allow double down if possible
+                    				    System.out.println("Press [3] to double down.");
+                                    }
+                                    int input = in.nextInt();
+                                    switch(input) {
+                    				    case 1: //hit
+                    		      		  bj.hit(i);
+                    	   		          break;
+                    				    case 2: //stand
                                             playerTurn = false;
-                                        }
-                    				    break;
-                                    default:
-                                        continue;
-                    			}
+                    				        break;
+                    				    case 3: //double down
+                                            if(2 * p.getBet() <= p.getBalance()) {
+                                                bj.hit(i);
+                    				            p.bet(2 * p.getBet());
+                                                playerTurn = false;
+                                            }
+                    				        break;
+                                        default:
+                                            continue;
+                                    }
+                                }
                     		}
                     		System.out.printf("%n");
                     	}
