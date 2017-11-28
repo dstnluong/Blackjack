@@ -63,11 +63,11 @@ public class Game {
     }
     //automates dealer turn
     public void dealerTurn() { 
+        dealer.revealCard(); //remove card back
         while(dealer.getScore() < 17) { //stands on soft 17
             dealer.hit(deck.draw()); 
             dealer.setScore();
         }
-        dealer.revealCard(); //remove card back
     }
     //clears ide
     public void clearScreen() { 
