@@ -7,12 +7,12 @@ public class Blackjack {
         Scanner in = new Scanner(System.in);
         bj = new Game();
         boolean play = true;
-        boolean quit = true;
+        boolean quit = false;
 
         bj.clearScreen();
         System.out.println("Welcome to Blackjack!");
 
-        while(quit) {    
+        while(!quit) {    
             System.out.println("[1] NEW GAME");
             System.out.println("[2] QUIT");
             int choice = in.nextInt();
@@ -55,46 +55,42 @@ public class Blackjack {
                     			}
                     		} 
                     	}
-                        
-                        //players' turns
-                    	for(int i = 0; i < bj.getSize(); i++) { //player turns
-                    		boolean playerTurn = true;
-                    		Player p = bj.getPlayer(i);
-                    		while(playerTurn && p.getScore() < 21) { //player's turn while not busted
-                                bj.clearScreen();
-                                if(bj.dealer21()) {
-                                    bj.displayGame();
-                                    playerTurn = false;   
-                                } else {
+                        if(!bj.dealer21()) { //skip player turns if dealer has blackjack
+                            //players' turns
+                        	for(int i = 0; i < bj.getSize(); i++) { //player turns
+                        		boolean playerTurn = true;
+                        		Player p = bj.getPlayer(i);
+                        		while(playerTurn && p.getScore() < 21) { //player's turn while not busted
+                                    bj.clearScreen();
                                     bj.displayGame();
                                     System.out.printf("%s's turn%n", p.getUsername());
                                     System.out.println("Press [1] to hit.");
                                     System.out.println("Press [2] to stand.");
                                     if(2 * p.getBet() <= p.getBalance()) { //allow double down if possible
-                    				    System.out.println("Press [3] to double down.");
+                                        System.out.println("Press [3] to double down.");
                                     }
                                     int input = in.nextInt();
                                     switch(input) {
                     				    case 1: //hit
-                    		      		  bj.hit(i);
-                    	   		          break;
+                                            bj.hit(i);
+                                            break;
                     				    case 2: //stand
                                             playerTurn = false;
-                    				        break;
+                                            break;
                     				    case 3: //double down
                                             if(2 * p.getBet() <= p.getBalance()) {
                                                 bj.hit(i);
-                    				            p.bet(2 * p.getBet());
+                                                p.bet(2 * p.getBet());
                                                 playerTurn = false;
                                             }
-                    				        break;
+                                            break;
                                         default:
                                             continue;
                                     }
                                 }
-                    		}
-                    		System.out.printf("%n");
-                    	}
+                                System.out.printf("%n");
+                            }
+                        }
 
                     	//dealer's turn 
                     	bj.dealerTurn();
@@ -107,7 +103,7 @@ public class Blackjack {
                         if(bj.getSize() == 0) {
                             System.out.printf("%nThanks for playing!%n");
                             play = false;
-                            quit = false;
+                            quit = true;
                             break;
                         }
                         System.out.printf("%n");
@@ -156,7 +152,7 @@ public class Blackjack {
                         			System.out.printf("%nThanks for playing!%n");
                                     options = false;
                                     play = false;
-                                    quit = false;
+                                    quit = true;
                                     break;
                                 default:
                                     System.out.printf("%nInvalid option. Try again.%n%n");
@@ -167,7 +163,7 @@ public class Blackjack {
                     break;
                 case 2:
                     System.out.printf("%nCome back soon!%n");
-                    quit = false;
+                    quit = true;
                     break;
                 default: 
                     System.out.printf("%nInvalid option. Try again.%n%n");

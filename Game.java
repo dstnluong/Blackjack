@@ -33,6 +33,10 @@ public class Game {
         dealer.hit(deck.draw()); //dealer draws one
         dealer.hit(deck.draw()); //dealer draws one
     }
+    //returns true if dealer has a blackjack
+    public boolean dealer21() {
+        return dealer.getInitialScore() == 21;
+    }
     public int getGamesPlayed() {
         return gamesPlayed;
     }

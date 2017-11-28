@@ -11,6 +11,9 @@ public class Dealer {
         hidecard = true;
         bust = false;
     }
+    public int getInitialScore() {
+        return hand.get(0).getValue() + hand.get(1).getValue();
+    }
     public int getScore() {
         return score;
     }
@@ -31,20 +34,20 @@ public class Dealer {
         hand.add(c);
         setScore();
     }
-    //returns true if dealer has a blackjack
-    public boolean dealer21() {
-        return dealer.getScore() == 21;
-    }
     public int getHandSize() {
         return hand.size();
     }
     public void setScore() { 
         score = 0;
-        for(int i = 0; i < hand.size(); i++) { //get initial score
+        int stop = hand.size();
+        if(hidecard) {
+            stop = 1;
+        }
+        for(int i = 0; i < stop; i++) { //get initial score
             score += hand.get(i).getValue();
         }
         if(score > 21) {
-            for(int i = 0; i < hand.size(); i++) { //if score if over 21 demote ace if possible
+            for(int i = 0; i < stop; i++) { //if score if over 21 demote ace if possible
                 Card a = hand.get(i);
                 if(a.getRank().equals("A")) {
                     a.demoteAce();
@@ -52,7 +55,7 @@ public class Dealer {
             }
         }
         score = 0;
-        for(int i = 0; i < hand.size(); i++) { // check score again
+        for(int i = 0; i < stop; i++) { // check score again
             score += hand.get(i).getValue();
         }
     }
@@ -62,8 +65,8 @@ public class Dealer {
     }
     //add cardback, clear hand, reset score
     public void reset() { 
-        hidecard = true;
         hand.clear();
+        hidecard = true;
         score = 0;
         bust = false;
     } 
@@ -72,8 +75,11 @@ public class Dealer {
         System.out.println("Dealer");
         String border = "+-----+  ";
         String cardback = "+++++++  ";
-
-        for(int i = 0; i < hand.size(); i++) { // border
+        int stop = hand.size();
+        if(hidecard) {
+            stop = 1;
+        }
+        for(int i = 0; i < stop; i++) { // border
              System.out.print(border);
         }
         if(hidecard) {
@@ -81,7 +87,7 @@ public class Dealer {
         }
         System.out.print("\n");
 
-        for(int i = 0; i < hand.size(); i++) { //rank
+        for(int i = 0; i < stop; i++) { //rank
             System.out.printf("|%-5s|  ", hand.get(i).getRank());
         }
         if(hidecard) {
@@ -89,7 +95,7 @@ public class Dealer {
         }
         System.out.print("\n");
  
-        for(int i = 0; i < hand.size(); i++) { //suit
+        for(int i = 0; i < stop; i++) { //suit
             System.out.printf("|  %s  |  ", hand.get(i).getSuit());
         }
         if(hidecard) {
@@ -97,7 +103,7 @@ public class Dealer {
         } 
         System.out.print("\n");
 
-        for(int i = 0; i < hand.size(); i++) { //rank
+        for(int i = 0; i < stop; i++) { //rank
             System.out.printf("|%5s|  ", hand.get(i).getRank());
         }
         if(hidecard) {
@@ -105,7 +111,7 @@ public class Dealer {
         }
         System.out.print("\n");
 
-        for(int i = 0; i < hand.size(); i++) { // border
+        for(int i = 0; i < stop; i++) { // border
             System.out.print(border);
         }
         if(hidecard) {
