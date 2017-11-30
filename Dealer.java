@@ -62,6 +62,7 @@ public class Dealer {
     //remove cardback
     public void revealCard() { 
         hidecard = false;
+        setScore();
     }
     //add cardback, clear hand, reset score
     public void reset() { 

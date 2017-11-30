@@ -64,7 +64,6 @@ public class Game {
     //automates dealer turn
     public void dealerTurn() { 
         dealer.revealCard(); //remove card back
-        dealer.setScore(); //update score with new card
         while(dealer.getScore() < 17) { //stands on soft 17
             dealer.hit(deck.draw()); 
             dealer.setScore();
