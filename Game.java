@@ -66,7 +66,6 @@ public class Game {
         dealer.revealCard(); //remove card back
         while(dealer.getScore() < 17) { //stands on soft 17
             dealer.hit(deck.draw()); 
-            dealer.setScore();
         }
     }
     //clears ide

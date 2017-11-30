@@ -39,23 +39,20 @@ public class Dealer {
     }
     public void setScore() { 
         score = 0;
-        int stop = hand.size();
-        if(hidecard) {
-            stop = 1;
-        }
-        for(int i = 0; i < stop; i++) { //get initial score
+        for(int i = 0; i < hand.size(); i++) { //get initial score
             score += hand.get(i).getValue();
         }
         if(score > 21) {
-            for(int i = 0; i < stop; i++) { //if score if over 21 demote ace if possible
+            for(int i = 0; i < hand.size(); i++) { //if score if over 21 demote ace if possible
                 Card a = hand.get(i);
-                if(a.getRank().equals("A")) {
+                if(a.getRank().equals("A") && a.getValue() == 11) {
                     a.demoteAce();
+                    break;
                 }
             }
         }
         score = 0;
-        for(int i = 0; i < stop; i++) { // check score again
+        for(int i = 0; i < hand.size(); i++) { // check score again
             score += hand.get(i).getValue();
         }
     }
@@ -120,6 +117,10 @@ public class Dealer {
         }
         System.out.printf("%n");
 
-        System.out.printf("Score: %-11s%n%n", getScoreString());
+        if(hidecard) {
+            System.out.printf("Score: %-11s%n%n", hand.get(0).getValue());
+        } else {
+            System.out.printf("Score: %-11s%n%n", getScoreString());
+        }
     }
 }
