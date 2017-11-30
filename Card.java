@@ -30,4 +30,7 @@ public class Card {
 	public void demoteAce() { 
 		value = 1;
 	}
+    public void promoteAce(){
+        value = 11;
+    }
 }

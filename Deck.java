@@ -36,6 +36,8 @@ public class Deck {
     //reset draw counter and reshuffle
     public void resetDeck() { 
         drawCounter = -1;
+        deck.clear();
+        fillDeck();
         shuffle();
     }
 }
