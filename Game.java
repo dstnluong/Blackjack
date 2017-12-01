@@ -172,27 +172,35 @@ public class Game {
     public void displayCurrentStandings() { 
         System.out.printf("%nCurrent Standings%n%n");
         if(players.size() > 0) {
-            for(int i = 0; i < players.size(); i++) { //username
-                System.out.printf("%-18s", players.get(i).getUsername(), "");     
-            }
-            System.out.printf("%n");
+            int playersperline = 3;
 
-            for(int i = 0; i < players.size(); i++) { // balance
-                System.out.printf("Balance: $%-8d", players.get(i).getBalance());     
-            }
-            System.out.printf("%n");
-            for(int i = 0; i < players.size(); i++) { //wins
-                System.out.printf("Wins: %-12d", players.get(i).getWins());     
-            }
-            System.out.printf("%n");
-            for(int i = 0; i < players.size(); i++) { // loses
-                System.out.printf("Loses: %-11d", players.get(i).getLoses());     
-            }
-            System.out.printf("%n");
-            for(int i = 0; i < players.size(); i++) { // draws
-                System.out.printf("Draws: %-11d", players.get(i).getDraws());     
-            }
-            System.out.printf("%n%n");
+                for(int s = 0; s < players.size(); s = s + playersperline) {
+
+                    for(int i = s; i < s + playersperline && i < players.size(); i++){ //username
+                        System.out.printf("%-18s", players.get(i).getUsername(), "");     
+                    }
+                    System.out.printf("%n");
+
+                    for(int i = s; i < s + playersperline && i < players.size(); i++){ //balance
+                        System.out.printf("Balance: $%-8d", players.get(i).getBalance());     
+                    }
+                    System.out.printf("%n");
+
+                    for(int i = s; i < s + playersperline && i < players.size(); i++) { //wins
+                        System.out.printf("Wins: %-12d", players.get(i).getWins());     
+                    }
+                    System.out.printf("%n");
+
+                    for(int i = s; i < s +playersperline && i < players.size(); i++) { // loses
+                        System.out.printf("Loses: %-11d", players.get(i).getLoses());     
+                    }
+                    System.out.printf("%n");
+
+                    for(int i = s; i < s + playersperline && i < players.size(); i++){ //draws
+                        System.out.printf("Draws: %-11d", players.get(i).getDraws());     
+                    }
+                    System.out.printf("%n%n");
+                }
         } else {
             System.out.printf("%nThere are currently no players.%n%n");
         }
